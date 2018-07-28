@@ -182,7 +182,7 @@ function re(a, b) {
 	if (0 == k)
 		return 1;
 	if (90 > k)
-		<<<<r = 1;>>>>
+		r = 1;
 	for (d = 0; d < k; d++) {
 		var m = a.charAt(d);
 		for (e = 0; e < ye.length; e++)
@@ -213,10 +213,10 @@ function re(a, b) {
 	d++;
 	d += 8;
 	if (0 == r)
-		<<<<h = (g[d++] << 6) + g[d++];>>>>
+		h = (g[d++] << 6) + g[d++];
 	Mb[b] = (g[d++] << 6) + g[d++];
 	if (1 == r)
-		<<<<$b[b] = g[d++];>>>>
+		$b[b] = g[d++];
 	for (e = c; e < c + 4; e++)
 		ac[e] = (g[d++] << 6) + g[d++];
 	if (0 == r)
@@ -2460,7 +2460,7 @@ Pg.prototype.K = function(a, b, c, d, e, g, k, r, m, n) {
 				0 == la && (this.B[n] = z(c / 10),
 				x(s + n, td) && (this.B[n] -= z(this.B[n] * y(s + n, t) / 100))));
 			if (0 == b)
-				<<<<M = ig(1, M - z(Bc[n] / 5));>>>>
+				M = ig(1, M - z(Bc[n] / 5));
 			x(s + n, sd) && 0 == b && (M = ig(1, M - y(s + n, t)));
 			x(s + n, td) && 0 != b && (M -= z(M * y(s + n, t) / 100));
 			x(s + n, ud) && A(100) < y(s + n, t) && (M = 0,
@@ -2510,7 +2510,7 @@ Pg.prototype.p = function(a, b, c, d) {
 	var e = new Qg,
 		g = a;
 	if (8 > a)
-		<<<<g = q[s + a];>>>>
+		g = q[s + a];
 	var k = w(g, 8) % 100,
 		r = z(w(g, 8) / 100),
 		m = w(g, 17),
@@ -4479,7 +4479,7 @@ hh.prototype.eb = function(a, b) {
 			var g = z(K(this.a[a][0].y - 7, 0, 255) / 8);
 			c = I.e[g][c];
 			if (0 > c)
-				<<<<d.y += 0.05;>>>>
+				d.y += 0.05;
 			c = z(K(this.a[a][0].x + d.x, 0, 511) / 8);
 			g = z(K(this.a[a][0].y + d.y, 0, 255) / 8);
 			c = I.e[g][c];
@@ -5068,7 +5068,7 @@ hh.prototype.M = function(a, b, c, d) {
 		k = B[a][5],
 		r = K(B[a][ch], 1, 4);
 	if (1 == d)
-		<<<<r = 1;>>>>
+		r = 1;
 	d = r;
 	var m = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		n = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -5696,7 +5696,7 @@ aa.move = function() {
 			b = 0);
 			e = -1;
 			if (1 == b)
-				<<<<e = 1 != ga ? 0 == this.F[a] ? G.K(this.ga[a], this.U[a], this.V[a], this.ea[a], this.fa[a], this.a[a].x, this.a[a].y, this.ja[a], this.ka[a]) : v.K(this.ga[a], this.U[a], this.V[a], this.ea[a], this.fa[a], this.a[a].x, this.a[a].y, this.ja[a], this.ka[a], 0) : v.K(this.ga[a], this.U[a], this.V[a], this.ea[a], this.fa[a], this.a[a].x, this.a[a].y, this.ja[a], this.ka[a], 1 - this.F[a] << 2);>>>>
+				e = 1 != ga ? 0 == this.F[a] ? G.K(this.ga[a], this.U[a], this.V[a], this.ea[a], this.fa[a], this.a[a].x, this.a[a].y, this.ja[a], this.ka[a]) : v.K(this.ga[a], this.U[a], this.V[a], this.ea[a], this.fa[a], this.a[a].x, this.a[a].y, this.ja[a], this.ka[a], 0) : v.K(this.ga[a], this.U[a], this.V[a], this.ea[a], this.fa[a], this.a[a].x, this.a[a].y, this.ja[a], this.ka[a], 1 - this.F[a] << 2);
 			-1 != e && 0 != this.la[a] && (1 != ga ? 0 == this.F[a] ? c.q(G.a[e][0], this.a[a]) : c.q(v.a[e][0], this.a[a]) : c.q(v.a[e][0], this.a[a]),
 			Xg(c),
 			Tg(c, 0.1 * this.la[a]),
@@ -5821,7 +5821,7 @@ aa.b = function() {
 				ya >>= 16;
 				Oa >>= 16;
 				if (0 > ya)
-					<<<<ya = 0;>>>>
+					ya = 0;
 				Oa >= fa && (Oa = fa - 1);
 				for (ta = ya; ta <= Oa; ta++)
 					jh[ta] = ea,
@@ -6687,7 +6687,7 @@ function eg(a, b, c, d, e, g, k, r, m, n) {
 		g <<= 8;
 		k <<= 8;
 		if (0 > b)
-			<<<<g += r * -b;>>>>
+			g += r * -b;
 		0 > c && (k += m * -c);
 		d = b + d > ea ? ea : z(b + d);
 		e = c + e > fa ? fa : z(c + e);
@@ -7705,3 +7705,75 @@ function defineItems () {
 	ITEMS[562] = ["Anger Crown", 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 9999, 1, 0, 0, 0, 0, 0, 18, 4294967193, 2, 64, 512, 64, 512, 0, 0, 10, 20, 0, 100, 1, 0, 0, 3, 0, 0, 0];
 	ITEMS[563] = ["Anger Crown", 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 999, 1, 0, 0, 0, 0, 0, 21, 4294967193, 2, 8, 8, 16, 16, 0, 0, 10, 3, -9, 100, 1, 0, 0, 3, 0, 0, 0];
 }
+
+// recursively searches the program memory for a target value (don't search for functions)
+function searchMemory (targetValue, isDeepSearch, context) {
+	// set up search space
+	if (context == undefined)
+		context = [window]
+	var searchSpace = context[0]
+	
+	// do the search
+	if ((isDeepSearch || searchSpace == window) && typeof(searchSpace) == 'object') {
+		var validKeys = []
+		// check each key in the search space
+		for (var key in searchSpace) {
+			// only check small name keys
+			if (key.length <= 3 && key[0] != '$') {
+				var value = searchSpace[key]
+				// no cycles
+				if (!context.includes(value)) {
+					// set up the contextual name of this key
+					var keyString = ''
+					if (context.length == 1)
+						keyString = key
+					else if (Number.isNaN(key))
+						keyString = '.'+key
+					else
+						keyString = '['+key+']'
+
+					// if we found the target, add this key to the list
+					if (value == targetValue) {
+						validKeys = validKeys.concat(keyString)
+						outputWithIndents('found target at '+typeof(key)+': ', keyString, context.length)
+
+					// else if this value is an object that isn't obscenely long, recursively search its keys
+					} else if (typeof(value) == 'object' && Object.keys(value).length < 200) {
+						// perform the subsearch
+						var searchResult = searchMemory(targetValue, isDeepSearch, [value].concat(context))
+						// add any successful matches to the list
+						for (var subkey of searchResult) {
+							var appendedKeyString = keyString + subkey
+							validKeys = validKeys.concat(appendedKeyString)
+							outputWithIndents('found submatches at: ', appendedKeyString, context.length)
+						}
+					}
+				}
+			}
+		}
+		if (validKeys.length > 0)
+			outputWithIndents('returning valid keys: ', validKeys, context.length)
+		// return the keys we found
+		return validKeys
+	}
+	
+	// we found nothing
+	return false
+}
+
+// output a message and object with a given number of indents
+function outputWithIndents (message, object, level) {
+	var outputString = message + '%o'
+	for (var i = 0; i < level; ++i)
+		outputString = '\t' + outputString
+	console.log(outputString, object)
+}
+
+function cool (target) {
+	return searchMemory(target, true)
+}
+
+
+/*
+GameLoad("1HFBZuEbzMmBd4Z2Z4c9jIuV7mQE8rZI7wldSH7meXD84pnmYZbeint.6FPamzBQgxDWq9VsEd1SuLpIoJvS0bBoV8oT9sUDzkWJA*riaVMHDA87FGILPUahpy6HTgu7NewDXsCZxKk9b2W*V0Y5fEqR3iM1jQ8tdOAzncSJB4.vromllmorv.4BJScnzAOdt8Qj1Mi3RqEf5Y0V*W2b9kKxZCsXDweN7ugTH6yphaUPLIGFFGILPUahpy6HTgu8Ph.HbwGe0PpHkBOt6dmMHu", 1, '')
+*/
