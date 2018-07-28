@@ -1,8 +1,7 @@
-/*
- Copyright (C) 2008 ha55ii, http://dan-ball.jp/
- The games source code use is prohibition.
-*/
-var aa, ca = 0, da = window, ea = 512, fa = 384, ga = 0, ha, ja, ma, na, oa, qa, ra, sa, ua = 0, va = 0, xa = new wa, Aa = new wa, Ba = new wa, Da = new wa, Fa = new wa, Ga = new wa, Ha, Ia, Ka = [0, 0, 0, 0, 0, 0, 0, 0], La, Ma = new wa, Na = new wa, Pa = Array(13), Qa = new wa, Ra = new wa, Ua = new wa, Va = new wa, Ya = new wa, Za = new wa, $a = new wa, cb = new wa, db = new wa, fb = new wa, gb = new wa, hb = new wa, ib = new wa, jb = new wa, kb = new wa, lb = new wa, f = 0, mb = 0, h = 0, nb = 0, sb = 0, l = 0, tb = 3, ub = !1, vb = 0, wb = 0, xb = 0, yb = [0, 0, 0, 0], zb = [0, 0, 0, 0], Ab = [0, 0, 0, 0], Eb = [0, 0, 0, 0], Fb = 0, Gb = 0, Hb = 0, Ib = 0, Jb = 0, Kb = 100, Lb = 0, Mb = [1, 1], Nb = [1, 1], $b = [0, 0], ac = [0, 0, 0, 0, 0, 0, 0, 0], EXP = 0, dc = 0, ec = [0, 0, 0, 0, 0, 0, 0, 0], p = [50, 50, 50, 50, 50, 50, 50, 50], fc = [0, 0, 0, 0, 0, 0, 0, 0], gc = [0, 0, 0, 0, 0, 0, 0, 0], hc = [0, 0, 0, 0, 0, 0, 0, 0], ic = [0, 0, 0, 0, 0, 0, 0, 0], jc = [0, 0, 0, 0, 0, 0, 0, 0], kc = [50, 50, 50, 50, 50, 50, 50, 50], lc = [0, 0, 0, 0, 0, 0, 0, 0], mc = [0, 0, 0, 0, 0, 0, 0, 0], nc = [0, 0, 0, 0, 0, 0, 0, 0], oc = [0, 0, 0, 0, 0, 0, 0, 0], pc = [0, 0, 0, 0, 0, 0, 0, 0], qc = [0, 0, 0, 0, 0, 0, 0, 0], rc = [0, 0, 0, 0, 0, 0, 0, 0], tc = [0, 0, 0, 0, 0, 0, 0, 0], uc = [1, 1, 1, 1, 1, 1, 1, 1], vc = 0, wc = 0, xc = 0, yc = 0, zc = 1, Ac = [0, 0, 0, 0, 0, 0, 0, 0], Bc = [0, 0, 0, 0, 0, 0, 0, 0], Cc = [0, 0, 0, 0, 0, 0, 0, 0], q = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], Dc = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], Ec = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], s = 4, Fc = 16, Gc = 40, Hc = 41, Ic = 59, Jc = "Stickman Boxer Gladiator Sniper Magician Priest Gunner Whipper Angel".split(" "), Kc = "123456789S".split(""), Lc = [[[3, 7, 11, 15, 54, 64, 68, 72, 116, 121, 131, 137, 153, 178, 202, 214, 226, 253, 312, 328, 345, 360, 394, 410, 429, 451, 471, 479, 496, 504, 512, 520, 549], [4, 8, 12, 16, 55, 65, 69, 73, 117, 122, 132, 138, 154, 179, 203, 215, 227, 254, 313, 329, 346, 361, 395, 411, 430, 452, 472, 480, 497, 505, 513, 521, 550], [5, 9, 13, 17, 56, 66, 70, 74, 118, 123, 133, 139, 155, 180, 204, 216, 228, 255, 314, 330, 347, 362, 396, 412, 431, 453, 473, 481, 498, 506, 514, 522, 551], [6, 10, 14, 18, 57, 67, 71, 75, 119, 124, 134, 140, 156, 181, 205, 217, 229, 256, 315, 331, 348, 363, 397, 413, 432, 454, 474, 482, 499, 507, 515, 523, 552], [58, 60, 61, 62, 63, 115, 126, 127, 128, 129, 135, 141, 157, 182, 206, 218, 230, 257, 316, 332, 349, 364, 398, 414, 433, 455, 475, 483, 500, 508, 516, 524, 553], [76, 77, 78, 79, 80, 81, 82, 83, 120, 125, 136, 142, 158, 183, 207, 219, 231, 258, 317, 333, 350, 365, 399, 415, 434, 456, 476, 484, 501, 509, 517, 525, 554], [188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 208, 220, 232, 259, 318, 334, 351, 366, 400, 416, 435, 457, 477, 485, 502, 510, 518, 526, 555], [289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 319, 335, 352, 367, 401, 417, 436, 458, 478, 486, 503, 511, 519, 527, 556]], [[19, 20, 21, 22, 23, 0, 0, 0, 0], [24, 25, 26, 27, 28, 0, 0, 0, 0], [31, 32, 33, 34, 35, 36, 37, 38, 0], [29, 39, 40, 41, 42, 43, 44, 45, 47, 46, 341, 389, 406, 441, 459], [51, 52, 53, 48, 0, 0, 0, 0, 0], [243, 244, 245, 0, 0, 0, 0, 0, 0], [277, 285, 0, 0, 0, 0, 0, 0, 0]], [[270, 270, 0, 0, 0, 0, 0, 0, 0], [271, 271, 0, 0, 0, 0, 0, 0, 0], [272, 272, 0, 0, 0, 0, 0, 0, 0], [273, 273, 0, 0, 0, 0, 0, 0, 0], [274, 274, 0, 0, 0, 0, 0, 0, 0], [275, 275, 0, 0, 0, 0, 0, 0, 0], [276, 276, 0, 0, 0, 0, 0, 0, 0], [307, 307, 0, 0, 0, 0, 0, 0, 0]], [[19, 84, 143, 209, 323, 418, 20, 85, 144, 210, 324, 419, 21, 86, 145, 211, 325, 420, 22, 87, 146, 212, 326, 421, 23, 88, 147, 213, 327, 422], [24, 89, 148, 221, 336, 0, 25, 90, 149, 222, 337, 0, 26, 91, 150, 223, 338, 0, 27, 92, 151, 224, 339, 0, 28, 93, 152, 225, 340, 0], [31, 96, 161, 260, 369, 0, 32, 97, 162, 261, 370, 0, 33, 98, 163, 262, 371, 0, 34, 99, 164, 263, 372, 0, 35, 100, 165, 264, 373, 0, 36, 101, 166, 265, 374, 0, 37, 102, 167, 266, 375, 0, 38, 103, 168, 267, 376, 0], [39, 104, 169, 237, 353, 0, 40, 105, 170, 242, 354, 0, 41, 106, 171, 240, 355, 0, 42, 107, 172, 268, 0, 0, 43, 108, 173, 269, 356, 0, 44, 109, 174, 238, 357, 0, 45, 110, 175, 249, 0, 0, 47, 111, 176, 239, 358, 0, 46, 130, 177, 241, 359, 0, 341, 342, 343, 344, 368, 0, 389, 390, 391, 392, 393, 0, 406, 407, 408, 409, 0, 0, 459, 460, 461, 462, 463, 0], [385, 386, 387, 388, 0, 0, 0, 0, 0], [243, 244, 245, 246, 247, 248, 250, 251, 252, 320, 321, 322], [277, 285, 377, 279, 287, 379, 281, 308, 381, 283, 310, 0]]], Mc = 0, Nc = 1, Oc = 2, Pc = 3, Qc = 4, Rc = 5, Sc = 6, Tc = 10, Uc = 11, Vc = 12, Wc = 14, Xc = 15, Yc = 16, Zc = 19, $c = 34, ad = 35, bd = 36, cd = 37, dd = 39, ed = 40, fd = 44, hd = 7, t = 8, id = 9, jd = 10, kd = 11, ld = 1, md = 2, nd = 3, od = 4, pd = 5, qd = 6, rd = 7, sd = 8, td = 9, ud = 10, vd = 11, wd = 12, xd = 37, yd = 13, zd = 14, Ad = 15, Bd = 16, Cd = 17, Dd = 18, Ed = 19, Fd = 20, Gd = 21, Hd = 22, Id = 23, Jd = 24, Kd = 25, Ld = 26, Md = 27, Nd = 28, Od = 29, Pd = 32, Qd = 33, Rd = 34, Sd = 35, Td = 36, Ud = 38, Vd = 39, Wd = 40, Xd = 41, Yd = 42, Zd = 43, $d = 44, ae = 45, be = 46, ce = 47, de = 48, ee = 49, ITEMS = Array(558);
+/*	Copyright (C) 2008 ha55ii, http://dan-ball.jp/
+	The games source code use is prohibition.*/
+
+var aa, ca = 0, da = window, ea = 512, fa = 384, ga = 0, ha, ja, ma, na, oa, qa, ra, sa, ua = 0, va = 0, xa = new wa, Aa = new wa, Ba = new wa, Da = new wa, Fa = new wa, Ga = new wa, Ha, Ia, Ka = [0, 0, 0, 0, 0, 0, 0, 0], La, Ma = new wa, Na = new wa, Pa = Array(13), Qa = new wa, Ra = new wa, Ua = new wa, Va = new wa, Ya = new wa, Za = new wa, $a = new wa, cb = new wa, db = new wa, fb = new wa, gb = new wa, hb = new wa, ib = new wa, jb = new wa, kb = new wa, lb = new wa, f = 0, mb = 0, h = 0, nb = 0, sb = 0, l = 0, tb = 3, ub = !1, vb = 0, wb = 0, xb = 0, yb = [0, 0, 0, 0], zb = [0, 0, 0, 0], Ab = [0, 0, 0, 0], Eb = [0, 0, 0, 0], Fb = 0, Gb = 0, Hb = 0, Ib = 0, Jb = 0, Kb = 100, Lb = 0, Mb = [1, 1], Nb = [1, 1], $b = [0, 0], ac = [0, 0, 0, 0, 0, 0, 0, 0], EXP = 0, dc = 0, ec = [0, 0, 0, 0, 0, 0, 0, 0], p = [50, 50, 50, 50, 50, 50, 50, 50], fc = [0, 0, 0, 0, 0, 0, 0, 0], gc = [0, 0, 0, 0, 0, 0, 0, 0], hc = [0, 0, 0, 0, 0, 0, 0, 0], ic = [0, 0, 0, 0, 0, 0, 0, 0], jc = [0, 0, 0, 0, 0, 0, 0, 0], kc = [50, 50, 50, 50, 50, 50, 50, 50], lc = [0, 0, 0, 0, 0, 0, 0, 0], mc = [0, 0, 0, 0, 0, 0, 0, 0], nc = [0, 0, 0, 0, 0, 0, 0, 0], oc = [0, 0, 0, 0, 0, 0, 0, 0], pc = [0, 0, 0, 0, 0, 0, 0, 0], qc = [0, 0, 0, 0, 0, 0, 0, 0], rc = [0, 0, 0, 0, 0, 0, 0, 0], tc = [0, 0, 0, 0, 0, 0, 0, 0], uc = [1, 1, 1, 1, 1, 1, 1, 1], vc = 0, wc = 0, xc = 0, yc = 0, zc = 1, Ac = [0, 0, 0, 0, 0, 0, 0, 0], Bc = [0, 0, 0, 0, 0, 0, 0, 0], Cc = [0, 0, 0, 0, 0, 0, 0, 0], q = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], Dc = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], Ec = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], s = 4, Fc = 16, Gc = 40, Hc = 41, Ic = 59, CLASSES = "Stickman Boxer Gladiator Sniper Magician Priest Gunner Whipper Angel".split(" "), Kc = "123456789S".split(""), Lc = [[[3, 7, 11, 15, 54, 64, 68, 72, 116, 121, 131, 137, 153, 178, 202, 214, 226, 253, 312, 328, 345, 360, 394, 410, 429, 451, 471, 479, 496, 504, 512, 520, 549], [4, 8, 12, 16, 55, 65, 69, 73, 117, 122, 132, 138, 154, 179, 203, 215, 227, 254, 313, 329, 346, 361, 395, 411, 430, 452, 472, 480, 497, 505, 513, 521, 550], [5, 9, 13, 17, 56, 66, 70, 74, 118, 123, 133, 139, 155, 180, 204, 216, 228, 255, 314, 330, 347, 362, 396, 412, 431, 453, 473, 481, 498, 506, 514, 522, 551], [6, 10, 14, 18, 57, 67, 71, 75, 119, 124, 134, 140, 156, 181, 205, 217, 229, 256, 315, 331, 348, 363, 397, 413, 432, 454, 474, 482, 499, 507, 515, 523, 552], [58, 60, 61, 62, 63, 115, 126, 127, 128, 129, 135, 141, 157, 182, 206, 218, 230, 257, 316, 332, 349, 364, 398, 414, 433, 455, 475, 483, 500, 508, 516, 524, 553], [76, 77, 78, 79, 80, 81, 82, 83, 120, 125, 136, 142, 158, 183, 207, 219, 231, 258, 317, 333, 350, 365, 399, 415, 434, 456, 476, 484, 501, 509, 517, 525, 554], [188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 208, 220, 232, 259, 318, 334, 351, 366, 400, 416, 435, 457, 477, 485, 502, 510, 518, 526, 555], [289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 319, 335, 352, 367, 401, 417, 436, 458, 478, 486, 503, 511, 519, 527, 556]], [[19, 20, 21, 22, 23, 0, 0, 0, 0], [24, 25, 26, 27, 28, 0, 0, 0, 0], [31, 32, 33, 34, 35, 36, 37, 38, 0], [29, 39, 40, 41, 42, 43, 44, 45, 47, 46, 341, 389, 406, 441, 459], [51, 52, 53, 48, 0, 0, 0, 0, 0], [243, 244, 245, 0, 0, 0, 0, 0, 0], [277, 285, 0, 0, 0, 0, 0, 0, 0]], [[270, 270, 0, 0, 0, 0, 0, 0, 0], [271, 271, 0, 0, 0, 0, 0, 0, 0], [272, 272, 0, 0, 0, 0, 0, 0, 0], [273, 273, 0, 0, 0, 0, 0, 0, 0], [274, 274, 0, 0, 0, 0, 0, 0, 0], [275, 275, 0, 0, 0, 0, 0, 0, 0], [276, 276, 0, 0, 0, 0, 0, 0, 0], [307, 307, 0, 0, 0, 0, 0, 0, 0]], [[19, 84, 143, 209, 323, 418, 20, 85, 144, 210, 324, 419, 21, 86, 145, 211, 325, 420, 22, 87, 146, 212, 326, 421, 23, 88, 147, 213, 327, 422], [24, 89, 148, 221, 336, 0, 25, 90, 149, 222, 337, 0, 26, 91, 150, 223, 338, 0, 27, 92, 151, 224, 339, 0, 28, 93, 152, 225, 340, 0], [31, 96, 161, 260, 369, 0, 32, 97, 162, 261, 370, 0, 33, 98, 163, 262, 371, 0, 34, 99, 164, 263, 372, 0, 35, 100, 165, 264, 373, 0, 36, 101, 166, 265, 374, 0, 37, 102, 167, 266, 375, 0, 38, 103, 168, 267, 376, 0], [39, 104, 169, 237, 353, 0, 40, 105, 170, 242, 354, 0, 41, 106, 171, 240, 355, 0, 42, 107, 172, 268, 0, 0, 43, 108, 173, 269, 356, 0, 44, 109, 174, 238, 357, 0, 45, 110, 175, 249, 0, 0, 47, 111, 176, 239, 358, 0, 46, 130, 177, 241, 359, 0, 341, 342, 343, 344, 368, 0, 389, 390, 391, 392, 393, 0, 406, 407, 408, 409, 0, 0, 459, 460, 461, 462, 463, 0], [385, 386, 387, 388, 0, 0, 0, 0, 0], [243, 244, 245, 246, 247, 248, 250, 251, 252, 320, 321, 322], [277, 285, 377, 279, 287, 379, 281, 308, 381, 283, 310, 0]]], Mc = 0, Nc = 1, Oc = 2, Pc = 3, Qc = 4, Rc = 5, Sc = 6, Tc = 10, Uc = 11, Vc = 12, Wc = 14, Xc = 15, Yc = 16, Zc = 19, $c = 34, ad = 35, bd = 36, cd = 37, dd = 39, ed = 40, fd = 44, hd = 7, t = 8, id = 9, jd = 10, kd = 11, ld = 1, md = 2, nd = 3, od = 4, pd = 5, qd = 6, rd = 7, sd = 8, td = 9, ud = 10, vd = 11, wd = 12, xd = 37, yd = 13, zd = 14, Ad = 15, Bd = 16, Cd = 17, Dd = 18, Ed = 19, Fd = 20, Gd = 21, Hd = 22, Id = 23, Jd = 24, Kd = 25, Ld = 26, Md = 27, Nd = 28, Od = 29, Pd = 32, Qd = 33, Rd = 34, Sd = 35, Td = 36, Ud = 38, Vd = 39, Wd = 40, Xd = 41, Yd = 42, Zd = 43, $d = 44, ae = 45, be = 46, ce = 47, de = 48, ee = 49, ITEMS = Array(558);
 defineItems();
 
 var fe = 0,
@@ -799,9 +798,9 @@ function uf() {
 		If(160 + 64 * l, 140, 25, 25, 16711680);
 		Ne();
 		for (a = 0; 8 > a; a++) {
-			var b = 46 + 60 * a
-			  , c = Jc[a + 1]
-			  , d = D;
+			var b = 46 + 60 * a,
+				c = CLASSES[a + 1],
+				d = D;
 			d.Q = -1;
 			yf(d, b, 220, c, 13407305, 6553600);
 			d.Q = 0;
@@ -890,9 +889,9 @@ function vf() {
 			v.set(2, 2, I.o[2]);
 			v.set(3, 3, I.o[3]);
 			G.j(1);
-			var e = z(N(12, 28))
-			  , g = z(N(28, 44))
-			  , k = z(N(44, 60));
+			var e = z(N(12, 28)),
+				g = z(N(28, 44)),
+				k = z(N(44, 60));
 			Kb = 100;
 			for (b = s; b < Gc; b++)
 				w(q[b], hd) == de && (Kb += w(q[b], t)),
@@ -901,10 +900,10 @@ function vf() {
 			Kb = K(Kb, 100, 300);
 			var r = z((Me[h][nb].length - 2) / 3);
 			for (a = 0; a < r; a++) {
-				var m = Me[h][nb][3 * a + 2]
-				  , n = Me[h][nb][3 * a + 3]
-				  , F = Me[h][nb][3 * a + 4]
-				  , F = z(F * Kb / 100);
+				var m = Me[h][nb][3 * a + 2],
+					n = Me[h][nb][3 * a + 3],
+					F = Me[h][nb][3 * a + 4],
+					F = z(F * Kb / 100);
 				for (b = 0; b < F; b++) {
 					if (m == O)
 						c = z(N(12, 60)),
@@ -1209,11 +1208,11 @@ function wf() {
 			D.b(c + 8, d + 40, "AT " + ITEMS[k][Tc] + "-" + ITEMS[k][Uc], 16777215, 0);
 			D.b(c + 8, d + 52, "AGI " + ITEMS[k][Wc] + "-" + ITEMS[k][Xc], 16777215, 0);
 			D.b(c + 8, d + 64, "RANGE " + ITEMS[k][Yc], 16777215, 0);
-			var r = w(k, $c)
-			  , m = w(k, ad)
-			  , n = ig(w(k, bd), 0)
-			  , F = w(k, dd)
-			  , H = w(k, ed);
+			var r = w(k, $c),
+				m = w(k, ad),
+				n = ig(w(k, bd), 0),
+				F = w(k, dd),
+				H = w(k, ed);
 			D.b(c + 8, d + 80, "TYPE " + "physical fire ice thunder poison freeze".split(" ")[r], 16777215, 0);
 			D.b(c + 8, d + 92, "AT " + F + "-" + H, 16777215, 0);
 			6 == a ? D.b(c + 8, d + 104, "$$ " + n, 16777215, 0) : D.b(c + 8, d + 104, "MP " + n, 16777215, 0);
@@ -1392,7 +1391,7 @@ function wf() {
 			eg(Qa, c + 32 * a, d, 24, 24, 24 * w(q[s + a], Rc), 0, 24, 24, 16777215),
 			Yf(c + 32 * a, d, 24 * w(q[s + a], Rc), w(q[s + a], Sc));
 		bg(c + 32 * vb - 1, d - 1, 26, 26, 16711680);
-		D.b(c, d - 16, Jc[w(q[s + vb], Rc)], 16777215, 0);
+		D.b(c, d - 16, CLASSES[w(q[s + vb], Rc)], 16777215, 0);
 		c = 100;
 		d = 74;
 		D.b(c, d + 16, "LP  " + gc[vb], 16777215, 0);
@@ -1853,10 +1852,10 @@ function Cf() {
 		mc[a] += y(s + a, t),
 		nc[a] += y(s + a, t));
 		b = w(q[s + a], Tc);
-		var d = w(q[s + a], Uc)
-		  , e = w(q[s + a], Wc)
-		  , g = w(q[s + a], Xc)
-		  , k = w(q[s + a], Yc);
+		var d = w(q[s + a], Uc),
+			e = w(q[s + a], Wc),
+			g = w(q[s + a], Xc),
+			k = w(q[s + a], Yc);
 		1 == ec[a] ? (oc[a] = b + z(lc[a] / 2),
 		pc[a] = d + z(lc[a] / 2),
 		qc[a] = e < ig(e - mc[a], 5) ? e : ig(e - mc[a], 5),
@@ -1988,9 +1987,9 @@ function Jf(a) {
 	if (4 > l) {
 		b = "LP  " + p[l] + "/" + kc[l];
 		d = "STR " + lc[l];
-		var r = "DEX " + mc[l]
-		  , m = "MAG " + nc[l];
-		D.b(e, g + 0, Jc[w(q[s + l], Rc)], 16777215, 0);
+		var r = "DEX " + mc[l],
+			m = "MAG " + nc[l];
+		D.b(e, g + 0, CLASSES[w(q[s + l], Rc)], 16777215, 0);
 		D.b(e, g + 16, b, 16777215, 0);
 		if (v.step[l] != Mg)
 			if (D.b(e, g + 28, d, 16777215, 0),
@@ -2010,8 +2009,8 @@ function Jf(a) {
 				kf.b(e, g + 64 + 2, "              BULLET", -1, 0),
 				kf.b(e, g + 64 + 2, "                     +" + mc[l] / 5, 0, -1);
 			else if (8 == ec[l]) {
-				var n = 0
-				  , n = 10 > mc[l] ? 0 + (mc[l] - 0) / 10 : 30 > mc[l] ? 1 + (mc[l] - 10) / 20 : 60 > mc[l] ? 2 + (mc[l] - 30) / 30 : 100 > mc[l] ? 3 + (mc[l] - 60) / 40 : 4;
+				var n = 0,
+					n = 10 > mc[l] ? 0 + (mc[l] - 0) / 10 : 30 > mc[l] ? 1 + (mc[l] - 10) / 20 : 60 > mc[l] ? 2 + (mc[l] - 30) / 30 : 100 > mc[l] ? 3 + (mc[l] - 60) / 40 : 4;
 				kf.b(e, g + 64 + 2, "              RING", -1, 0);
 				kf.b(e, g + 64 + 2, "                   +" + ("" + n).substring(0, 5 > ("" + n).length ? ("" + n).length : 5), 0, -1)
 			}
@@ -2377,8 +2376,8 @@ Pg.prototype.set = function(a, b, c) {
 ;
 da.fff = Pg.prototype.kb;
 Pg.prototype.kb = function(a, b) {
-	var c = this.a[a][b]
-	  , d = new Qg;
+	var c = this.a[a][b],
+		d = new Qg;
 	d.q(c, this.c[a][b]);
 	c.set(this.c[a][b]);
 	var e = (Sg(d) >> 2) + 1;
@@ -2410,9 +2409,9 @@ Pg.prototype.kb = function(a, b) {
 }
 ;
 Pg.prototype.m = function(a, b, c, d, e) {
-	var g = 0.5 * (a + c)
-	  , k = 1E3
-	  , r = -1;
+	var g = 0.5 * (a + c),
+		k = 1E3,
+		r = -1;
 	if (1 == this.fb)
 		return r;
 	for (var m = e + 4; e < m; e++) {
@@ -2432,8 +2431,8 @@ Pg.prototype.K = function(a, b, c, d, e, g, k, r, m, n) {
 	m *= 0.5;
 	for (var H = n + 4; n < H; n++)
 		if (this.step[n] != Mg && !(this.a[n][2].x - 5 > g + r || this.a[n][2].x + 5 < g - r || this.a[n][2].y - 10 > k + m || this.a[n][2].y + 10 < k - m)) {
-			var F = -1
-			  , M = d + z(A(e - d + 1));
+			var F = -1,
+				M = d + z(A(e - d + 1));
 			this.qa[n] = 2;
 			var E = 16711680;
 			if (4 <= n)
@@ -2508,60 +2507,60 @@ Pg.prototype.jb = function() {
 }
 ;
 Pg.prototype.p = function(a, b, c, d) {
-	var e = new Qg
-	  , g = a;
+	var e = new Qg,
+		g = a;
 	if (8 > a)
 		<<<<g = q[s + a];>>>>
-	var k = w(g, 8) % 100
-	  , r = z(w(g, 8) / 100)
-	  , m = w(g, 17)
-	  , n = w(g, 18)
-	  , F = w(g, Zc)
-	  , H = w(g, 20)
-	  , M = w(g, 21)
-	  , E = w(g, 22)
-	  , la = w(g, 23)
-	  , Ja = w(g, 24)
-	  , Ea = w(g, 25)
-	  , Ca = w(g, 26)
-	  , Z = w(g, 27)
-	  , X = w(g, 28)
-	  , $ = w(g, 29)
-	  , ob = w(g, 30)
-	  , pb = w(g, 31)
-	  , Wa = w(g, 32)
-	  , ta = w(g, 33)
-	  , ya = 0
-	  , rb = w(g, 9)
-	  , ia = 8 > a ? oc[a] : w(g, Tc)
-	  , ka = 8 > a ? pc[a] : w(g, Uc)
-	  , za = w(g, Vc)
-	  , bb = w(g, 13)
-	  , ab = w(g, $c)
-	  , pa = w(g, ad)
-	  , Xa = w(g, cd)
-	  , Bb = w(g, 42)
-	  , Cb = w(g, 43)
-	  , Sa = w(g, fd)
-	  , Oa = w(g, 45)
-	  , Ob = w(g, 46)
-	  , Pb = w(g, 47)
-	  , Qb = w(g, 48)
-	  , Rb = w(g, 49)
-	  , Sb = w(g, 50)
-	  , Tb = w(g, 51)
-	  , qb = w(g, 52)
-	  , Ub = w(g, 53)
-	  , Vb = w(g, 54)
-	  , Wb = w(g, 55)
-	  , Xb = w(g, 56)
-	  , Yb = w(g, 57)
-	  , Zb = w(g, 38)
-	  , ba = w(g, dd)
-	  , U = w(g, ed)
-	  , sc = w(g, 41)
-	  , gd = ab
-	  , Ta = pa;
+	var k = w(g, 8) % 100,
+		r = z(w(g, 8) / 100),
+		m = w(g, 17),
+		n = w(g, 18),
+		F = w(g, Zc),
+		H = w(g, 20),
+		M = w(g, 21),
+		E = w(g, 22),
+		la = w(g, 23),
+		Ja = w(g, 24),
+		Ea = w(g, 25),
+		Ca = w(g, 26),
+		Z = w(g, 27),
+		X = w(g, 28),
+		$ = w(g, 29),
+		ob = w(g, 30),
+		pb = w(g, 31),
+		Wa = w(g, 32),
+		ta = w(g, 33),
+		ya = 0,
+		rb = w(g, 9),
+		ia = 8 > a ? oc[a] : w(g, Tc),
+		ka = 8 > a ? pc[a] : w(g, Uc),
+		za = w(g, Vc),
+		bb = w(g, 13),
+		ab = w(g, $c),
+		pa = w(g, ad),
+		Xa = w(g, cd),
+		Bb = w(g, 42),
+		Cb = w(g, 43),
+		Sa = w(g, fd),
+		Oa = w(g, 45),
+		Ob = w(g, 46),
+		Pb = w(g, 47),
+		Qb = w(g, 48),
+		Rb = w(g, 49),
+		Sb = w(g, 50),
+		Tb = w(g, 51),
+		qb = w(g, 52),
+		Ub = w(g, 53),
+		Vb = w(g, 54),
+		Wb = w(g, 55),
+		Xb = w(g, 56),
+		Yb = w(g, 57),
+		Zb = w(g, 38),
+		ba = w(g, dd),
+		U = w(g, ed),
+		sc = w(g, 41),
+		gd = ab,
+		Ta = pa;
 	if (8 > a) {
 		var Db = w(q[s + a], Rc);
 		1 == Db || 2 == Db || 7 == Db ? (ia = w(q[s + a], dd),
@@ -2701,8 +2700,8 @@ Pg.prototype.p = function(a, b, c, d) {
 				e.y = -Xe[r & 511][1];
 				k = b + 10 * e.x;
 				a = c + 10 * e.y;
-				var bc = e.x * bb * 0.1
-				  , hf = e.y * bb * 0.1;
+				var bc = e.x * bb * 0.1,
+					hf = e.y * bb * 0.1;
 				oe.add(Db, k, a, bc, hf, m, n, F, H, M, E, la, Ja, Ea, Ca, Z, X, $, ob, pb, Wa, ta, ya, rb, ia, ka, ab, pa, Xa, Bb, Cb, Sa, Oa, Ob, Pb, Qb, Rb, Sb, Tb, qb, Ub, Vb, Wb, Xb, Yb, Zb, ba, U, sc, gd, Ta);
 				r += ve
 			}
@@ -2711,8 +2710,8 @@ Pg.prototype.p = function(a, b, c, d) {
 				Rg(e, g - b, d - c);
 				ve = 0 < r ? r : za + 4;
 				if (1 < za) {
-					var bc = z(A(512))
-					  , jf = A(4) * ve;
+					var bc = z(A(512)),
+						jf = A(4) * ve;
 					e.x += Xe[bc][0] * jf;
 					e.y += Xe[bc][1] * jf
 				}
@@ -2811,10 +2810,10 @@ function Yg(a, b) {
 
 function Zg(a, b) {
 	if (0 != uc[b] && !(20 > z(100 * p[b] / kc[b]) && 0 == vc)) {
-		var c = 0.5 * (a.a[b][9].x + a.a[b][10].x)
-		  , d = 0.5 * (a.a[b][9].y + a.a[b][10].y)
-		  , e = tc[b]
-		  , e = 1 != ga ? G.m(c - 200 - e, d - 100 - e, c + 200 + e, d + 100 + e) : v.m(c - 600, d - 300, c + 600, d + 300, 1 - (b >> 2) << 2);
+		var c = 0.5 * (a.a[b][9].x + a.a[b][10].x),
+			d = 0.5 * (a.a[b][9].y + a.a[b][10].y),
+			e = tc[b],
+			e = 1 != ga ? G.m(c - 200 - e, d - 100 - e, c + 200 + e, d + 100 + e) : v.m(c - 600, d - 300, c + 600, d + 300, 1 - (b >> 2) << 2);
 		-1 != e && 9 == I.e[z(K(d, 8, 383) / 8)][z(K(c, 0, 511) / 8)] && (c < (1 != ga ? G.a[e][G.n].x : a.a[e][2].x) ? (a.a[b][0].x += 0.25,
 		a.a[b][1].x += 0.25) : (a.a[b][0].x -= 0.25,
 		a.a[b][1].x -= 0.25),
@@ -2901,13 +2900,13 @@ da.fff = Pg.prototype.sa;
 Pg.prototype.sa = function(a) {
 	var b, c, d = new Qg, e = 1 - (a >> 2) << 2;
 	b = oc[a];
-	var g = pc[a]
-	  , k = qc[a] + $g(rc[a] - qc[a] + 1);
+	var g = pc[a],
+		k = qc[a] + $g(rc[a] - qc[a] + 1);
 	c = tc[a];
 	if (0 != this.h[a] && 0 != this.step[a] && this.v != a) {
 		0 < this.l[a] && this.l[a]--;
-		var r = 0.5 * (this.a[a][9].x + this.a[a][10].x)
-		  , m = 0.5 * (this.a[a][9].y + this.a[a][10].y);
+		var r = 0.5 * (this.a[a][9].x + this.a[a][10].x),
+			m = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 		c = 1 != ga ? G.m(r - c, m - c, r + c, m) : v.m(r - c, m - c, r + c, m, e);
 		if (0 == this.l[a] && -1 != c) {
 			this.l[a] = k;
@@ -2985,13 +2984,13 @@ da.fff = Pg.prototype.ta;
 Pg.prototype.ta = function(a) {
 	var b, c, d = new Qg, e = 1 - (a >> 2) << 2;
 	b = oc[a];
-	var g = pc[a]
-	  , k = qc[a] + $g(rc[a] - qc[a] + 1)
-	  , r = tc[a];
+	var g = pc[a],
+		k = qc[a] + $g(rc[a] - qc[a] + 1),
+		r = tc[a];
 	if (0 != this.h[a] && this.v != a) {
 		0 < this.l[a] && this.l[a]--;
-		var m = 0.5 * (this.a[a][9].x + this.a[a][10].x)
-		  , n = 0.5 * (this.a[a][9].y + this.a[a][10].y);
+		var m = 0.5 * (this.a[a][9].x + this.a[a][10].x),
+			n = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 		c = 1 != ga ? G.m(m - r, n - r, m + r, n) : v.m(m - r, n - r, m + r, n, e);
 		0 == this.l[a] && -1 != c && (this.l[a] = k,
 		m < (1 != ga ? G.a[c][G.n].x : this.a[c][2].x) ? (this.a[a][5].x += 3,
@@ -3061,10 +3060,10 @@ da.fff = Pg.prototype.ua;
 Pg.prototype.ua = function(a) {
 	var b;
 	b = 1 - (a >> 2) << 2;
-	var c = qc[a] + $g(rc[a] - qc[a] + 1)
-	  , d = tc[a]
-	  , e = 0.5 * (this.a[a][9].x + this.a[a][10].x)
-	  , g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
+	var c = qc[a] + $g(rc[a] - qc[a] + 1),
+		d = tc[a],
+		e = 0.5 * (this.a[a][9].x + this.a[a][10].x),
+		g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	b = 1 != ga ? G.m(e - d, g - d, e + d, g + d) : v.m(e - d, g - d, e + d, g + d, b);
 	-1 != b && (e < (1 != ga ? G.a[b][G.n].x : this.a[b][2].x) ? (this.a[a][6].x += 0.2,
 	this.a[a][6].y -= 0.2,
@@ -3103,10 +3102,10 @@ da.fff = Pg.prototype.ma;
 Pg.prototype.ma = function(a) {
 	var b;
 	b = 1 - (a >> 2) << 2;
-	var c = qc[a] + $g(rc[a] - qc[a] + 1)
-	  , d = tc[a]
-	  , e = 0.5 * (this.a[a][9].x + this.a[a][10].x)
-	  , g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
+	var c = qc[a] + $g(rc[a] - qc[a] + 1),
+		d = tc[a],
+		e = 0.5 * (this.a[a][9].x + this.a[a][10].x),
+		g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	b = 1 != ga ? G.m(e - d, g - d, e + d, g + d) : v.m(e - d, g - d, e + d, g + d, b);
 	-1 != b && (e < (1 != ga ? G.a[b][G.n].x : this.a[b][2].x) ? (this.a[a][5].x += 0.1,
 	this.a[a][6].x += 0.1,
@@ -3146,8 +3145,8 @@ Pg.prototype.na = function(a) {
 	var b, c, d = 1 - (a >> 2) << 2;
 	b = qc[a] + $g(rc[a] - qc[a] + 1);
 	c = tc[a];
-	var e = 0.5 * (this.a[a][9].x + this.a[a][10].x)
-	  , g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
+	var e = 0.5 * (this.a[a][9].x + this.a[a][10].x),
+		g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	c = 1 != ga ? G.m(e - c, g - c / 2, e + c, g + c / 2) : v.m(e - c, g - c / 2, e + c, g + c / 2, d);
 	if (0 != this.h[a] && this.v != a) {
 		0 < this.l[a] && this.l[a]--;
@@ -3191,9 +3190,9 @@ Pg.prototype.va = function(a) {
 	var b, c, d = new Qg;
 	c = 1 - (a >> 2) << 2;
 	b = qc[a] + $g(rc[a] - qc[a] + 1);
-	var e = tc[a]
-	  , g = 0.5 * (this.a[a][9].x + this.a[a][10].x)
-	  , k = 0.5 * (this.a[a][9].y + this.a[a][10].y);
+	var e = tc[a],
+		g = 0.5 * (this.a[a][9].x + this.a[a][10].x),
+		k = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	c = 1 != ga ? G.m(g - e, k - e, g + e, k + e) : v.m(g - e, k - e, g + e, k + e, c);
 	-1 != c && this.v != a && (1 != ga ? d.q(G.a[c][G.n], this.a[a][6]) : d.q(this.a[c][2], this.a[a][6]),
 	Xg(d),
@@ -3425,10 +3424,10 @@ da.fff = Pg.prototype.b;
 Pg.prototype.b = function() {
 	var a, b, c = new Qg, d = new Qg, e = 1 != ga ? 4 : 8;
 	for (a = 0; a < e; a++) {
-		var g = w(q[s + a], Yc)
-		  , k = w(q[s + a], Sc)
-		  , r = 15908203
-		  , m = 16777215;
+		var g = w(q[s + a], Yc),
+			k = w(q[s + a], Sc),
+			r = 15908203,
+			m = 16777215;
 		x(s + a, Pd) && (r = 13421772,
 		m = 3342438);
 		0 < this.B[a] ? (r = 1989840,
@@ -3724,65 +3723,65 @@ aa.K = function(a, b, c, d, e, g, k, r, m) {
 }
 ;
 aa.p = function(a, b) {
-	var c = new Qg
-	  , d = this.id[a] + b
-	  , e = B[d]
-	  , g = e[7] % 100
-	  , k = z(e[7] / 100)
-	  , r = e[8]
-	  , m = e[9]
-	  , n = e[10]
-	  , F = e[11]
-	  , H = e[12]
-	  , M = e[13]
-	  , E = e[14]
-	  , la = e[15]
-	  , Ja = e[16]
-	  , Ea = e[17]
-	  , Ca = e[18]
-	  , Z = e[19]
-	  , X = e[20]
-	  , $ = e[21]
-	  , ob = e[22]
-	  , pb = e[23]
-	  , Wa = e[24]
-	  , ta = e[25]
-	  , ya = e[26]
-	  , rb = e[27]
-	  , ia = e[28]
-	  , ka = e[29]
-	  , za = e[30]
-	  , bb = e[31]
-	  , ab = e[32]
-	  , pa = e[33]
-	  , Xa = e[34]
-	  , Bb = e[41]
-	  , Cb = e[42]
-	  , Sa = e[43]
-	  , Oa = e[44]
-	  , Ob = e[45]
-	  , Pb = e[46]
-	  , Qb = e[47]
-	  , Rb = e[48]
-	  , Sb = e[49]
-	  , Tb = e[50]
-	  , qb = e[51]
-	  , Ub = e[52]
-	  , Vb = e[53]
-	  , Wb = e[54]
-	  , Xb = e[55]
-	  , Yb = e[56]
-	  , Zb = e[57]
-	  , ba = e[58]
-	  , e = e[59];
+	var c = new Qg,
+		d = this.id[a] + b,
+		e = B[d],
+		g = e[7] % 100,
+		k = z(e[7] / 100),
+		r = e[8],
+		m = e[9],
+		n = e[10],
+		F = e[11],
+		H = e[12],
+		M = e[13],
+		E = e[14],
+		la = e[15],
+		Ja = e[16],
+		Ea = e[17],
+		Ca = e[18],
+		Z = e[19],
+		X = e[20],
+		$ = e[21],
+		ob = e[22],
+		pb = e[23],
+		Wa = e[24],
+		ta = e[25],
+		ya = e[26],
+		rb = e[27],
+		ia = e[28],
+		ka = e[29],
+		za = e[30],
+		bb = e[31],
+		ab = e[32],
+		pa = e[33],
+		Xa = e[34],
+		Bb = e[41],
+		Cb = e[42],
+		Sa = e[43],
+		Oa = e[44],
+		Ob = e[45],
+		Pb = e[46],
+		Qb = e[47],
+		Rb = e[48],
+		Sb = e[49],
+		Tb = e[50],
+		qb = e[51],
+		Ub = e[52],
+		Vb = e[53],
+		Wb = e[54],
+		Xb = e[55],
+		Yb = e[56],
+		Zb = e[57],
+		ba = e[58],
+		e = e[59];
 	if (0 < this.l[a])
 		this.l[a]--;
 	else if (!(A(1E3) > bb) && (bb = v.m(this.a[a][0].x - ab, this.a[a][0].y - ab, this.a[a][0].x + ab, this.a[a][0].y + ab, 0),
 	-1 != bb && (this.l[a] = za,
 	0 != g)))
 		if (1 == g) {
-			var g = this.a[a][0].x + 10 * c.x
-			  , U = this.a[a][0].y + 10 * c.y;
+			var g = this.a[a][0].x + 10 * c.x,
+				U = this.a[a][0].y + 10 * c.y;
 			oe.add(1, g, U, 0, 0, r, m, n, F, H, M, E, la, Ja, Ea, Ca, Z, X, $, ob, pb, Wa, 0, ta, ya, rb, pa, Xa, Bb, Cb, Sa, Oa, Ob, Pb, Qb, Rb, Sb, 0, 0, Tb, qb, Ub, Vb, Wb, Xb, Yb, Zb, ba, e, pa, Xa)
 		} else if (2 == g)
 			c = v.a[bb][2].x - this.a[a][0].x,
@@ -3798,10 +3797,10 @@ aa.p = function(a, b) {
 			za = 0; za < ia; za++) {
 				c.x = Xe[k & 511][0];
 				c.y = -Xe[k & 511][1];
-				var g = this.a[a][0].x + 10 * c.x
-				  , U = this.a[a][0].y + 10 * c.y
-				  , ab = c.x * ka * 0.1
-				  , sc = c.y * ka * 0.1;
+				var g = this.a[a][0].x + 10 * c.x,
+					U = this.a[a][0].y + 10 * c.y,
+					ab = c.x * ka * 0.1,
+					sc = c.y * ka * 0.1;
 				oe.add(1, g, U, ab, sc, r, m, n, F, H, M, E, la, Ja, Ea, Ca, Z, X, $, ob, pb, Wa, 0, ta, ya, rb, pa, Xa, Bb, Cb, Sa, Oa, Ob, Pb, Qb, Rb, Sb, 0, 0, Tb, qb, Ub, Vb, Wb, Xb, Yb, Zb, ba, e, pa, Xa);
 				k += d
 			}
@@ -3999,8 +3998,8 @@ hh.prototype.sa = function(a) {
 		b = v.m(this.a[a][0].x - 200, this.a[a][0].y - 50, this.a[a][0].x + 200, this.a[a][0].y + 50, 0);
 		-1 != b && (this.a[a][0].x += v.a[b][2].x < this.a[a][0].x ? -0.001 : 0.001);
 		if (0 < (this.state[a] & 2)) {
-			var c = 0
-			  , c = -1 != b ? v.a[b][2].x < this.a[a][0].x ? -1 : 1 : Kf(-1, 1);
+			var c = 0,
+				c = -1 != b ? v.a[b][2].x < this.a[a][0].x ? -1 : 1 : Kf(-1, 1);
 			10 > A(100) && (this.a[a][0].x += N(0.4, 0.6) * c,
 			this.a[a][0].y += N(-1.5, -2))
 		}
@@ -4194,8 +4193,8 @@ hh.prototype.ma = function(a, b) {
 		if (50 > A(100) && 0 < (this.state[a] & 3)) {
 			var d = v.m(this.a[a][0].x - 200, this.a[a][0].y - 50, this.a[a][0].x + 200, this.a[a][0].y + 50, 0);
 			-1 != d ? this.d[a] = v.a[d][2].x < this.a[a][0].x ? 1 : 2 : 10 > A(100) && (this.d[a] = Kf(1, 2));
-			var e = d = 1
-			  , g = 0;
+			var e = d = 1,
+				g = 0;
 			if (12 == b)
 				d = 0.25,
 				e = 0.3,
@@ -4325,8 +4324,8 @@ hh.prototype.va = function(a) {
 			W(this.a[a][b], this.c[a][b], 0, 0.99);
 		b = v.m(this.a[a][0].x - 200, this.a[a][0].y - 50, this.a[a][0].x + 200, this.a[a][0].y + 50, 0);
 		-1 != b && 40 > A(100) && 0 < (this.state[a] & 2) && (this.a[a][0].x += v.a[b][2].x < this.a[a][0].x ? -2 : 2);
-		var d = 0.1
-		  , c = 1.2 * c;
+		var d = 0.1,
+			c = 1.2 * c;
 		for (b = 1; 4 > b; b++)
 			Y(this.a[a][b], this.a[a][b + 3], 20 * c, d, d);
 		for (b = 1; 5 > b; b++)
@@ -4764,8 +4763,8 @@ hh.prototype.pb = function(a) {
 		W(this.a[a][2], this.c[a][2], 0.1, 0.99);
 		var c = v.m(this.a[a][0].x - 200, this.a[a][0].y - 50, this.a[a][0].x + 200, this.a[a][0].y + 50, 0);
 		if (0 < (this.state[a] & 2) && 5 > A(100)) {
-			var d = 0
-			  , d = -1 != c ? v.a[c][2].x < this.a[a][0].x ? -1 : 1 : Kf(-1, 1);
+			var d = 0,
+				d = -1 != c ? v.a[c][2].x < this.a[a][0].x ? -1 : 1 : Kf(-1, 1);
 			this.a[a][0].x += N(0.4, 0.6) * d;
 			this.a[a][0].y += N(-1.5, -2)
 		}
@@ -4859,8 +4858,8 @@ hh.prototype.qb = function(a) {
 	} else {
 		for (b = 0; 10 > b; b++)
 			W(this.a[a][b], this.c[a][b], 0.05, 0.98);
-		var c = 0.05
-		  , e = (150 - this.count[a]) / 150;
+		var c = 0.05,
+			e = (150 - this.count[a]) / 150;
 		for (b = 1; 4 > b; b++)
 			Y(this.a[a][b], this.a[a][b + 3], 3 * d * e, c, c);
 		for (b = 4; 7 > b; b++)
@@ -4917,10 +4916,10 @@ da.fff = hh.prototype.b;
 hh.prototype.b = function() {
 	var a, b;
 	for (a = 0; a < this.index; a++) {
-		var c = B[this.id[a]][2]
-		  , d = B[this.id[a]][4]
-		  , e = B[this.id[a]][5]
-		  , g = B[this.id[a]][ch];
+		var c = B[this.id[a]][2],
+			d = B[this.id[a]][4],
+			e = B[this.id[a]][5],
+			g = B[this.id[a]][ch];
 		0 < this.B[a] ? (d = 5934817,
 		e = 1989840) : 0 < this.C[a] ? (d = 1989840,
 		e = 9840) : 0 < this.D[a] && (d = 3407616,
@@ -5064,15 +5063,15 @@ hh.prototype.b = function() {
 }
 ;
 hh.prototype.M = function(a, b, c, d) {
-	var e = B[a][2]
-	  , g = B[a][4]
-	  , k = B[a][5]
-	  , r = K(B[a][ch], 1, 4);
+	var e = B[a][2],
+		g = B[a][4],
+		k = B[a][5],
+		r = K(B[a][ch], 1, 4);
 	if (1 == d)
 		<<<<r = 1;>>>>
 	d = r;
-	var m = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	  , n = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	var m = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		n = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 	switch (B[a][bh]) {
 	case 0:
 		m[0] = b + 0 * d;
@@ -5714,8 +5713,8 @@ aa.move = function() {
 						if (1 == this.sub[a])
 							Rg(c, 0, 0);
 						else if (3 == this.sub[a]) {
-							var g = z(A(512))
-							  , k = N(0.05, 0.1);
+							var g = z(A(512)),
+								k = N(0.05, 0.1);
 							c.x = this.A[a] * Xe[g][0] * k;
 							c.y = this.A[a] * Xe[g][1] * k
 						} else
@@ -5762,55 +5761,55 @@ aa.b = function() {
 				Tg(e, this.Va[a] >> 1);
 				g.q(e, d);
 				eh(k, e, d);
-				var r = this.a[a].x + g.x
-				  , m = this.a[a].y + g.y
-				  , n = b
-				  , F = this.a[a].x + k.x
-				  , H = this.a[a].y + k.y
-				  , M = b + 16
-				  , E = this.a[a].x - g.x
-				  , la = this.a[a].y - g.y
-				  , Ja = b + 16
-				  , Ea = this.a[a].x - k.x
-				  , Ca = this.a[a].y - k.y
-				  , Z = 0
-				  , X = 0
-				  , $ = 16
-				  , ob = 16
-				  , pb = Za
-				  , r = r << 16
-				  , m = m << 16
-				  , F = F << 16
-				  , H = H << 16
-				  , E = E << 16
-				  , la = la << 16
-				  , Ea = Ea << 16
-				  , Ca = Ca << 16
-				  , n = 65535 * n
-				  , Z = 65535 * Z
-				  , M = 65535 * M
-				  , X = 65535 * X
-				  , Ja = 65535 * Ja
-				  , $ = 65535 * $;
+				var r = this.a[a].x + g.x,
+					m = this.a[a].y + g.y,
+					n = b,
+					F = this.a[a].x + k.x,
+					H = this.a[a].y + k.y,
+					M = b + 16,
+					E = this.a[a].x - g.x,
+					la = this.a[a].y - g.y,
+					Ja = b + 16,
+					Ea = this.a[a].x - k.x,
+					Ca = this.a[a].y - k.y,
+					Z = 0,
+					X = 0,
+					$ = 16,
+					ob = 16,
+					pb = Za,
+					r = r << 16,
+					m = m << 16,
+					F = F << 16,
+					H = H << 16,
+					E = E << 16,
+					la = la << 16,
+					Ea = Ea << 16,
+					Ca = Ca << 16,
+					n = 65535 * n,
+					Z = 65535 * Z,
+					M = 65535 * M,
+					X = 65535 * X,
+					Ja = 65535 * Ja,
+					$ = 65535 * $;
 				b *= 65535;
-				var ob = 65535 * ob
-				  , Wa = void 0
-				  , ta = void 0
-				  , ya = void 0
-				  , rb = Wa = void 0
-				  , ia = void 0
-				  , ka = void 0
-				  , za = void 0
-				  , bb = void 0
-				  , ab = void 0
-				  , pa = void 0
-				  , Xa = void 0
-				  , Bb = void 0
-				  , Cb = void 0
-				  , Sa = void 0
-				  , Sa = void 0
-				  , ya = fa << 16
-				  , Oa = 0;
+				var ob = 65535 * ob,
+					Wa = void 0,
+					ta = void 0,
+					ya = void 0,
+					rb = Wa = void 0,
+					ia = void 0,
+					ka = void 0,
+					za = void 0,
+					bb = void 0,
+					ab = void 0,
+					pa = void 0,
+					Xa = void 0,
+					Bb = void 0,
+					Cb = void 0,
+					Sa = void 0,
+					Sa = void 0,
+					ya = fa << 16,
+					Oa = 0;
 				ya > m && (ya = m);
 				ya > H && (ya = H);
 				ya > la && (ya = la);
@@ -5902,8 +5901,8 @@ aa.move = function() {
 	var a;
 	for (a = 0; a < this.index; a++) {
 		if (0 == this.k[a].x) {
-			var b = this.a[a]
-			  , c = this.k[a];
+			var b = this.a[a],
+				c = this.k[a];
 			c.y += 0;
 			Tg(c, 0.96)
 		} else
@@ -6075,10 +6074,10 @@ th.prototype.j = function(a) {
 	for (c = 0; c < this.s; c++)
 		for (b = 0; b < this.i; b++) {
 			a = c * Na.i + K(b, 3, 60) + d;
-			var e = Na.f[3 >= b || this.i - 3 <= b ? a : a - 1]
-			  , g = Na.f[2 >= b || this.i - 4 <= b ? a : a + 1]
-			  , k = Na.f[0 == c ? a : a - Na.i]
-			  , r = Na.f[c == this.s - 1 ? a : a + Na.i];
+			var e = Na.f[3 >= b || this.i - 3 <= b ? a : a - 1],
+				g = Na.f[2 >= b || this.i - 4 <= b ? a : a + 1],
+				k = Na.f[0 == c ? a : a - Na.i],
+				r = Na.f[c == this.s - 1 ? a : a + Na.i];
 			0 == Na.f[a] ? 0 != e && 0 == g && 0 != k && 0 == r ? this.e[c][b] = 0 : 0 == e && 0 == g && 0 != k && 0 == r ? this.e[c][b] = 1 : 0 == e && 0 != g && 0 != k && 0 == r ? this.e[c][b] = 2 : 0 != e && 0 == g && 0 == k && 0 == r ? this.e[c][b] = 3 : 0 == e && 0 == g && 0 == k && 0 == r ? this.e[c][b] = 4 : 0 == e && 0 != g && 0 == k && 0 == r ? this.e[c][b] = 5 : 0 != e && 0 == g && 0 == k && 0 != r ? this.e[c][b] = 6 : 0 == e && 0 == g && 0 == k && 0 != r ? this.e[c][b] = 7 : 0 == e && 0 != g && 0 == k && 0 != r && (this.e[c][b] = 8) : 255 == Na.f[a] && (this.e[c][b] = 9)
 		}
 	for (b = 0; b < this.i; b++)
@@ -6170,18 +6169,18 @@ uh.prototype.j = function() {
 	for (c = 0; c < this.s; c++)
 		for (b = 0; b < this.i; b++) {
 			a = c * ib.i + b;
-			var d = 0 == b ? 0 : -1
-			  , e = b == this.i - 1 ? 0 : 1
-			  , g = 0 == c ? 0 : -this.i
-			  , k = c == this.s - 1 ? 0 : this.i
-			  , r = ib.f[a + d + g]
-			  , m = ib.f[a + g]
-			  , g = ib.f[a + e + g]
-			  , n = ib.f[a + d]
-			  , F = ib.f[a + e]
-			  , d = ib.f[a + d + k]
-			  , H = ib.f[a + k]
-			  , e = ib.f[a + e + k];
+			var d = 0 == b ? 0 : -1,
+				e = b == this.i - 1 ? 0 : 1,
+				g = 0 == c ? 0 : -this.i,
+				k = c == this.s - 1 ? 0 : this.i,
+				r = ib.f[a + d + g],
+				m = ib.f[a + g],
+				g = ib.f[a + e + g],
+				n = ib.f[a + d],
+				F = ib.f[a + e],
+				d = ib.f[a + d + k],
+				H = ib.f[a + k],
+				e = ib.f[a + e + k];
 			65535 == kb.f[a] ? this.e[c][b] = 15 : 6684672 == kb.f[a] ? this.e[c][b] = 17 : 0 != ib.f[a] && (13209 == ib.f[a] ? this.e[c][b] = 13 : 16764006 == kb.f[a] ? this.e[c][b] = 14 : 6710886 == kb.f[a] ? this.e[c][b] = 16 : (a = ib.f[a],
 			m >= a && n >= a && F >= a && H >= a && e < a ? this.e[c][b] = 3 : m >= a && n >= a && F >= a && H >= a && d < a ? this.e[c][b] = 4 : m >= a && n >= a && F >= a && H >= a && g < a ? this.e[c][b] = 8 : m >= a && n >= a && F >= a && H >= a && r < a ? this.e[c][b] = 9 : n < a && F >= a && m < a && H >= a ? this.e[c][b] = 0 : n >= a && F >= a && m < a && H >= a ? this.e[c][b] = 1 : n >= a && F < a && m < a && H >= a ? this.e[c][b] = 2 : n < a && F >= a && m >= a && H >= a ? this.e[c][b] = 5 : n >= a && F < a && m >= a && H >= a ? this.e[c][b] = 7 : n < a && F >= a && m >= a && H < a ? this.e[c][b] = 10 : n >= a && F >= a && m >= a && H < a ? this.e[c][b] = 11 : n >= a && F < a && m >= a && H < a && (this.e[c][b] = 12)))
 		}
@@ -6410,8 +6409,8 @@ wa.prototype.j = function(a) {
 function mf(a) {
 	if (0 == a.d && a.Z.complete) {
 		nf--;
-		var b = a.Z.width
-		  , c = a.Z.height;
+		var b = a.Z.width,
+			c = a.Z.height;
 		if (0 == b || 0 == c)
 			throw delete a.Z,
 			a.file = "",
@@ -6562,10 +6561,10 @@ function Vf(a) {
 var Xf = 0;
 
 function qh(a, b, c) {
-	var d = Xf
-	  , e = 0
-	  , g = 0
-	  , k = 0;
+	var d = Xf,
+		e = 0,
+		g = 0,
+		k = 0;
 	1 == d ? (d = a >> 16 & 255,
 	e = (((b >> 16 & 255) - d) * c >> 8) + d,
 	d = a >> 8 & 255,
