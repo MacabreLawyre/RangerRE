@@ -117,6 +117,7 @@ $1$2($3 $4 $5)\n$1\t? ($6)\n$1\t: ($7)
 $1$2($3) ? ($8) t: ($9)
 $1$2#if($3){$8}else{$9}#
 //EXAMPLE BEFORE
+while (true) {
 var condition1 = true,
 	condition2 = false,
 	access = condition1 ? condition2 ? "true true": "true false" : condition2 ? "false true" : "false false";
@@ -142,7 +143,9 @@ function egg(a, b) {
 		ke--,
 		2 == je ? D.b(10, 172) : 3 == je ? D.b(10, 1084672) : 4 == je && D.b(1072);
 }
+}
 // EXAMPLE AFTER
+while (true) {
 var condition1 = true,
 	condition2 = false,
 	access =  (IF(condition1)THEN{(IF(condition2)THEN{"true true"}ELSE{"true false" })}ELSE{(IF(condition2)THEN{"false true"}ELSE{"false false"}) }) ;
@@ -168,7 +171,36 @@ function egg(a, b) {
 		ke--,
 		2 ==  (IF(je)THEN{D.b(10, 172)}ELSE{3 ==  (IF(je)THEN{D.b(10, 1084672)}ELSE{4 == je && D.b(1072)}) }) ;
 }
+}
 // ##############################################################
 
-
-
+// ##############################################################
+// CLEAN UP TERNARY STUFF
+// ##############################################################
+//FIND 1
+^(\t*)(.*) * && *\( *\n((.*,\n)*(.*\n))(.*)\);
+//FIND 2
+^(\t*)(.*?) *&& *\(([^\(\)&]*)\),$
+//REPLACE 1
+$1if ($2) {\n$3$6}
+//REPLACE 2
+$1if ($2) {\n$1\t$3;\n$1},
+//EXAMPLE
+while (true) {
+		dg = 2;
+		for (a = 0; a < k[e].length; a++)
+			eg(Ra, c + 8 + 16 * a, d + 4, 12, 12, 12 * k[e][a], 0, 12, 12, 16777215);
+		dg = 0;
+		bg(c + 8 + 16 * vb - 1, d + 4 - 1, 14, 14, 10027008);
+		L(c + 0, d + 20 - 1, c + 235, d + 20 - 1, 16777215);
+		Wf(c + 120, d + 24, 84, 84) && (
+			b = floor((cg - (c + 120)) / 28),
+			a = floor((fg - (d + 24)) / 28),
+			Ef && (xb = 3 * a + b),
+			V(c + 120 + 28 * b, d + 24 + 28 * a, 24, 24, 10027008)
+		);
+		b = (3 * wb + xb) % Lc[e][vb].length;
+		k = Lc[e][vb][b];
+		g = 1;
+}
+// ##############################################################

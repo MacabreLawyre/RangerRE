@@ -16,7 +16,7 @@ var aa,
 	Ma = new wa, Na = new wa, 
 	Pa = Array(13), 
 	Qa = new wa, Ra = new wa, Ua = new wa, Va = new wa, Ya = new wa, Za = new wa, $a = new wa, cb = new wa, db = new wa, fb = new wa, gb = new wa, hb = new wa, ib = new wa, jb = new wa, kb = new wa, lb = new wa, 
-	f = 0, mb = 0, h = 0, nb = 0, sb = 0, l = 0, 
+	f = 0, mb = 0, h = 0, CURRENT_ROOM_INDEX = 0, sb = 0, l = 0, 
 	tb = 3, 
 	ub = !1, 
 	vb = 0, 
@@ -31,21 +31,21 @@ var aa,
 	EXP = 0, 
 	MONEY = 0, 
 	ec = [0, 0, 0, 0, 0, 0, 0, 0], 
-	p = [50, 50, 50, 50, 50, 50, 50, 50], 
+	CURRENT_LIFE_VALUE = [50, 50, 50, 50, 50, 50, 50, 50], 
 	fc = [0, 0, 0, 0, 0, 0, 0, 0], 
 	LIFE_LEVELS = [0, 0, 0, 0, 0, 0, 0, 0], 
 	STR_LEVELS = [0, 0, 0, 0, 0, 0, 0, 0], 
 	DEX_LEVELS = [0, 0, 0, 0, 0, 0, 0, 0], 
 	MAG_LEVELS = [0, 0, 0, 0, 0, 0, 0, 0], 
-	kc = [50, 50, 50, 50, 50, 50, 50, 50], 
+	RANGER_MAX_LIFE = [50, 50, 50, 50, 50, 50, 50, 50], 
 	lc = [0, 0, 0, 0, 0, 0, 0, 0], 
 	mc = [0, 0, 0, 0, 0, 0, 0, 0], 
 	nc = [0, 0, 0, 0, 0, 0, 0, 0], 
-	oc = [0, 0, 0, 0, 0, 0, 0, 0], 
-	pc = [0, 0, 0, 0, 0, 0, 0, 0], 
-	qc = [0, 0, 0, 0, 0, 0, 0, 0], 
-	rc = [0, 0, 0, 0, 0, 0, 0, 0], 
-	tc = [0, 0, 0, 0, 0, 0, 0, 0], 
+	RANGER_MIN_AT = [0, 0, 0, 0, 0, 0, 0, 0], 
+	RANGER_MAX_AT = [0, 0, 0, 0, 0, 0, 0, 0], 
+	RANGER_MIN_AGI = [0, 0, 0, 0, 0, 0, 0, 0], 
+	RANGER_MAX_AGI = [0, 0, 0, 0, 0, 0, 0, 0], 
+	RANGER_RANGE = [0, 0, 0, 0, 0, 0, 0, 0], 
 	uc = [1, 1, 1, 1, 1, 1, 1, 1], 
 	vc = 0, wc = 0, xc = 0, yc = 0, zc = 1, 
 	Ac = [0, 0, 0, 0, 0, 0, 0, 0], 
@@ -105,7 +105,7 @@ function gameLoad(a) {
 	if (0 == a.length) {
 		if (0 == le.length)
 			return -1;
-		l = sb = nb = h = mb = f = 0;
+		l = sb = CURRENT_ROOM_INDEX = h = mb = f = 0;
 		tb = 3;
 		ub = !1;
 		for (a = 0; 4 > a; a++)
@@ -188,9 +188,9 @@ function se(a) {
 		e[b++] = ec[c] >> 0 & 63;
 	if (0 == a)
 		for (c = 0; 4 > c; c++)
-			e[b++] = p[c] >> 12 & 63,
-			e[b++] = p[c] >> 6 & 63,
-			e[b++] = p[c] >> 0 & 63;
+			e[b++] = CURRENT_LIFE_VALUE[c] >> 12 & 63,
+			e[b++] = CURRENT_LIFE_VALUE[c] >> 6 & 63,
+			e[b++] = CURRENT_LIFE_VALUE[c] >> 0 & 63;
 	for (c = 0; 4 > c; c++)
 		e[b++] = LIFE_LEVELS[c] >> 6 & 63,
 		e[b++] = LIFE_LEVELS[c] >> 0 & 63,
@@ -305,7 +305,7 @@ function re(a, b) {
 		ec[e] = g[d++];
 	if (0 == r)
 		for (e = c; e < c + 4; e++)
-			p[e] = (g[d++] << 12) + (g[d++] << 6) + g[d++];
+			CURRENT_LIFE_VALUE[e] = (g[d++] << 12) + (g[d++] << 6) + g[d++];
 	for (e = c; e < c + 4; e++)
 		LIFE_LEVELS[e] = (g[d++] << 6) + g[d++],
 		STR_LEVELS[e] = (g[d++] << 6) + g[d++],
@@ -489,11 +489,11 @@ function Ne() {
 	for (a = 0; 8 > a; a++)
 		d += (ec[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		d += (p[a] | 1) * (d & 15 | 1);
+		d += (CURRENT_LIFE_VALUE[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
 		d += (fc[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		d += (kc[a] | 1) * (d & 15 | 1);
+		d += (RANGER_MAX_LIFE[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
 		d += (lc[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
@@ -501,15 +501,15 @@ function Ne() {
 	for (a = 0; 8 > a; a++)
 		d += (nc[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		d += (oc[a] | 1) * (d & 15 | 1);
+		d += (RANGER_MIN_AT[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		d += (pc[a] | 1) * (d & 15 | 1);
+		d += (RANGER_MAX_AT[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		d += (qc[a] | 1) * (d & 15 | 1);
+		d += (RANGER_MIN_AGI[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		d += (rc[a] | 1) * (d & 15 | 1);
+		d += (RANGER_MAX_AGI[a] | 1) * (d & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		d += (tc[a] | 1) * (d & 15 | 1);
+		d += (RANGER_RANGE[a] | 1) * (d & 15 | 1);
 	for (a = 0; a < Hc; a++)
 		d += (q[a] | 1) * (d & 15 | 1);
 	for (a = 0; a < Hc; a++)
@@ -576,11 +576,11 @@ function te() {
 	for (a = 0; 8 > a; a++)
 		b += (ec[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		b += (p[a] | 1) * (b & 15 | 1);
+		b += (CURRENT_LIFE_VALUE[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
 		b += (fc[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		b += (kc[a] | 1) * (b & 15 | 1);
+		b += (RANGER_MAX_LIFE[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
 		b += (lc[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
@@ -588,15 +588,15 @@ function te() {
 	for (a = 0; 8 > a; a++)
 		b += (nc[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		b += (oc[a] | 1) * (b & 15 | 1);
+		b += (RANGER_MIN_AT[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		b += (pc[a] | 1) * (b & 15 | 1);
+		b += (RANGER_MAX_AT[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		b += (qc[a] | 1) * (b & 15 | 1);
+		b += (RANGER_MIN_AGI[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		b += (rc[a] | 1) * (b & 15 | 1);
+		b += (RANGER_MAX_AGI[a] | 1) * (b & 15 | 1);
 	for (a = 0; 8 > a; a++)
-		b += (tc[a] | 1) * (b & 15 | 1);
+		b += (RANGER_RANGE[a] | 1) * (b & 15 | 1);
 	for (a = 0; a < Hc; a++)
 		b += (q[a] | 1) * (b & 15 | 1);
 	for (a = 0; a < Hc; a++)
@@ -814,7 +814,7 @@ function uf() {
 				f = 70
 		}
 	else if (1 == f)
-		nb = 0,
+		CURRENT_ROOM_INDEX = 0,
 		I.j(0) && (v.set(0, 20, I.o[20]),
 		v.set(1, 28, I.o[28]),
 		v.set(2, 36, I.o[36]),
@@ -925,7 +925,7 @@ function uf() {
 		Nb[0] = 1;
 		for (a = MONEY = EXP = $b[0] = 0; 4 > a; a++)
 			ac[a] = 0,
-			p[a] = 50,
+			CURRENT_LIFE_VALUE[a] = 50,
 			fc[a] = 0,
 			LIFE_LEVELS[a] = 0,
 			STR_LEVELS[a] = 0,
@@ -947,12 +947,12 @@ function uf() {
 		300 <= b ? q[Fc + 0] = 560 : 250 <= b ? q[Fc + 0] = 559 : 200 <= b ? q[Fc + 0] = 558 : 150 <= b && (q[Fc + 0] = 557);
 		1 == c && 100 == b && (q[Fc + 0] = 561);
 		1 == c && 100 != b && (q[Fc + 1] = 561);
-		nb = qe.t = 0;
+		CURRENT_ROOM_INDEX = qe.t = 0;
 		f = 6;
 		te();
 		Ff()
 	} else
-		5 == f ? (nb = 0,
+		5 == f ? (CURRENT_ROOM_INDEX = 0,
 		f = 6) : 6 == f && (qe.b(),
 		Jf(2))
 }
@@ -977,11 +977,11 @@ function vf() {
 				w(Dc[b], hd) == de && (Kb += w(Dc[b], t)),
 				w(Ec[b], hd) == de && (Kb += w(Ec[b], t));
 			Kb = K(Kb, 100, 300);
-			var r = floor((Me[h][nb].length - 2) / 3);
+			var r = floor((Me[h][CURRENT_ROOM_INDEX].length - 2) / 3);
 			for (a = 0; a < r; a++) {
-				var m = Me[h][nb][3 * a + 2],
-					n = Me[h][nb][3 * a + 3],
-					F = Me[h][nb][3 * a + 4],
+				var m = Me[h][CURRENT_ROOM_INDEX][3 * a + 2],
+					n = Me[h][CURRENT_ROOM_INDEX][3 * a + 3],
+					F = Me[h][CURRENT_ROOM_INDEX][3 * a + 4],
 					F = floor(F * Kb / 100);
 				for (b = 0; b < F; b++) {
 					if (m == O)
@@ -1043,10 +1043,10 @@ function vf() {
 		Jf(0);
 		r = 30;
 		a = "";
-		if (0 == nb) {
+		if (0 == CURRENT_ROOM_INDEX) {
 			r = 110;
-			a = Uf[h];
-		} else if (nb + 1 == Me[h].length) {
+			a = MAP_NAMES[h];
+		} else if (CURRENT_ROOM_INDEX + 1 == Me[h].length) {
 			r = 110;
 			a = "BOSS AREA";
 		}
@@ -1069,18 +1069,33 @@ function vf() {
 			f++;
 		};
 	} else if (12 == f) {
-		Tf(0),
-		Jf(0),
-		0 == p[0] + p[1] + p[2] + p[3] ? (mb = 0, f = 30) : 0 != sb ? f++ : Wf(364, 4, 56, 20) ? (Ef ? f = 20 : Ze[32] && (f = 20),
-		D.b(368, 8, "Option", 16711680, 0)) : Ze[32] ? f = 20 : Wf(428, 4, 80, 20) && (Ef && (f = 6),
-		D.b(432, 8, "World Map", 16711680, 0));
+		Tf(0);
+		Jf(0);
+		0 == CURRENT_LIFE_VALUE[0] + CURRENT_LIFE_VALUE[1] + CURRENT_LIFE_VALUE[2] + CURRENT_LIFE_VALUE[3] 
+			? (mb = 0, f = 30) 
+			: 0 != sb 
+				? f++ 
+				: Wf(364, 4, 56, 20) 
+					? (Ef
+						? f = 20 
+						: Ze[32] && (
+							f = 20
+						),
+						D.b(368, 8, "Option", 16711680, 0)
+					) 
+					: Ze[32] 
+						? f = 20 
+						: Wf(428, 4, 80, 20) && (
+							Ef && (f = 6),
+							D.b(432, 8, "World Map", 16711680, 0)
+						);
 	} else if (13 == f) {
-		Tf(0),
-		Jf(0),
-		Vf(floor(255 * mb / 30)),
-		mb++,
-		30 == mb && (
-			1 == sb ? (sb = 0, nb++, mb = 0, f = 10) : 2 == sb && (mb = nb = sb = 0,
+		Tf(0);
+		Jf(0);
+		Vf(floor(255 * mb / 30));
+		mb++;
+		if (30 == mb) {
+			1 == sb ? (sb = 0, CURRENT_ROOM_INDEX++, mb = 0, f = 10) : 2 == sb && (mb = CURRENT_ROOM_INDEX = sb = 0,
 			Ne(),
 			Ae[h] |= Be,
 			0 < De[h][3] && (Ae[De[h][3]] |= Ce),
@@ -1090,12 +1105,12 @@ function vf() {
 			-1 == De[h][3] && (f = 40)),
 			he = se(0),
 			fe = 1
-		);
+		}
 	} else if (20 == f) {
 		Tf(1);
 		Jf(1);
 		r = 12;
-		0 != h && 20 != h && 47 != h && 70 != h && 77 != h || 1 != nb || (r = 52);
+		0 != h && 20 != h && 47 != h && 70 != h && 77 != h || 1 != CURRENT_ROOM_INDEX || (r = 52);
 		Wf(364, 4, 56, 20) ? (Ef ? f = r : Ze[32] && (f = r),
 		D.b(368, 8, "Option", 16711680, 0)) : Ze[32] && (f = r);
 		Xf = 1;
@@ -1141,7 +1156,7 @@ function vf() {
 		100 == mb && Ef) {
 			Ne();
 			for (a = 0; 4 > a; a++)
-				0 == p[a] && (p[a] = 1);
+				0 == CURRENT_LIFE_VALUE[a] && (CURRENT_LIFE_VALUE[a] = 1);
 			te();
 			f = 1
 		}
@@ -1161,7 +1176,7 @@ function vf() {
 		if (Ef) {
 			Ne();
 			for (a = 0; 4 > a; a++)
-				0 == p[a] && (p[a] = 1);
+				0 == CURRENT_LIFE_VALUE[a] && (CURRENT_LIFE_VALUE[a] = 1);
 			te();
 			f = 1
 		}
@@ -1221,14 +1236,14 @@ function wf() {
 			Df(256, 160, 40, 24)) {
 				var g = 0;
 				for (a = 0; 4 > a; a++)
-					g += kc[a] - p[a];
+					g += RANGER_MAX_LIFE[a] - CURRENT_LIFE_VALUE[a];
 				yf(D, 256, 160, "INN", 16711680, 1054740);
 				D.b(280, 154, "charge of " + g, 16711680, 1054740);
 				if (g <= MONEY && Ef) {
 					Ne();
 					for (a = 0; 4 > a; a++)
-						p[a] != kc[a] && ne.add(v.a[a][0].x, v.a[a][0].y, 0, kc[a] - p[a], 65280),
-						p[a] = kc[a];
+						CURRENT_LIFE_VALUE[a] != RANGER_MAX_LIFE[a] && ne.add(v.a[a][0].x, v.a[a][0].y, 0, RANGER_MAX_LIFE[a] - CURRENT_LIFE_VALUE[a], 65280),
+						CURRENT_LIFE_VALUE[a] = RANGER_MAX_LIFE[a];
 					MONEY -= g;
 					te()
 				}
@@ -1238,14 +1253,14 @@ function wf() {
 				xb = wb = vb = 0));
 		else if (Df(400, 168, 40, 24)) {
 			for (a = g = 0; 4 > a; a++)
-				g += kc[a] - p[a];
+				g += RANGER_MAX_LIFE[a] - CURRENT_LIFE_VALUE[a];
 			yf(D, 400, 168, "INN", 16711680, 13800762);
 			yf(D, 400, 208, "charge of " + g, 16777215, 3219229);
 			if (g <= MONEY && Ef) {
 				Ne();
 				for (a = 0; 4 > a; a++)
-					p[a] != kc[a] && ne.add(v.a[a][0].x, v.a[a][0].y, 0, kc[a] - p[a], 65280),
-					p[a] = kc[a];
+					CURRENT_LIFE_VALUE[a] != RANGER_MAX_LIFE[a] && ne.add(v.a[a][0].x, v.a[a][0].y, 0, RANGER_MAX_LIFE[a] - CURRENT_LIFE_VALUE[a], 65280),
+					CURRENT_LIFE_VALUE[a] = RANGER_MAX_LIFE[a];
 				MONEY -= g;
 				te()
 			}
@@ -1260,28 +1275,46 @@ function wf() {
 	else if (53 == f) {
 		Tf(0);
 		e = sb = 0;
-		0 == h ? e = 0 : 20 == h ? e = 1 : 47 == h ? e = 2 : 77 == h && (e = 3);
-		var k = [[3, 4, 5, 6, 12, 14, 15, 18], [7, 8, 9, 10, 11, 16, 17], [3, 4, 5, 6, 12, 14, 15, 18], [7, 8, 9, 10, 11, 16, 17]];
+		if (0 == h)
+			e = 0
+		else if (20 == h) 
+			e = 1;
+		else if (47 == h)
+			e = 2;
+		else if (77 == h)
+			e = 3;
+		var k = [
+			[3, 4, 5, 6, 12, 14, 15, 18], 
+			[7, 8, 9, 10, 11, 16, 17], 
+			[3, 4, 5, 6, 12, 14, 15, 18], 
+			[7, 8, 9, 10, 11, 16, 17]
+		];
 		c = 80;
 		d = 28;
 		Xf = 1;
 		V(c - 4, d - 4, 243, 168, 2147483648);
 		Xf = 0;
 		bg(c + 0, d + 0, 236, 161, 16777215);
-		Wf(c + 8, d + 4, 16 * k[e].length, 12) && (b = floor((cg - (c + 8)) / 16),
-		Ef && (vb = b,
-		wb = K(wb, 0, floor(Lc[e][vb].length / 3) - 1)),
-		V(c + 8 + 16 * b, d + 4, 12, 12, 10027008));
+		if (Wf(c + 8, d + 4, 16 * k[e].length, 12)) {
+			b = floor((cg - (c + 8)) / 16);
+			if (Ef) {
+				vb = b;
+				wb = K(wb, 0, floor(Lc[e][vb].length / 3) - 1);
+			}
+			V(c + 8 + 16 * b, d + 4, 12, 12, 10027008);
+		}
 		dg = 2;
 		for (a = 0; a < k[e].length; a++)
 			eg(Ra, c + 8 + 16 * a, d + 4, 12, 12, 12 * k[e][a], 0, 12, 12, 16777215);
 		dg = 0;
 		bg(c + 8 + 16 * vb - 1, d + 4 - 1, 14, 14, 10027008);
 		L(c + 0, d + 20 - 1, c + 235, d + 20 - 1, 16777215);
-		Wf(c + 120, d + 24, 84, 84) && (b = floor((cg - (c + 120)) / 28),
-		a = floor((fg - (d + 24)) / 28),
-		Ef && (xb = 3 * a + b),
-		V(c + 120 + 28 * b, d + 24 + 28 * a, 24, 24, 10027008));
+		if (Wf(c + 120, d + 24, 84, 84)) {
+			b = floor((cg - (c + 120)) / 28),
+			a = floor((fg - (d + 24)) / 28),
+			Ef && (xb = 3 * a + b),
+			V(c + 120 + 28 * b, d + 24 + 28 * a, 24, 24, 10027008)
+		}
 		b = (3 * wb + xb) % Lc[e][vb].length;
 		k = Lc[e][vb][b];
 		g = 1;
@@ -1374,36 +1407,47 @@ function wf() {
 		L(c + 0, d + 136 - 1, c + 235, d + 136 - 1, 16777215);
 		L(c + 120, d + 136 - 1, c + 120, d + 160, 16777215);
 		
-		Wf(c + 0 + 1, d + 136, 120, 24) && 0 != q[Gc] 
-			? (g = floor(w(q[Gc], Oc) / 8),
-				Ef && (Ne(),
-					pe.add(40, 200, 1, g, 0),
-					q[Gc] = 0,
-					Dc[Gc] = 0,
-					Ec[Gc] = 0,
-					te()),
-				V(c + 0 + 1, d + 136, 119, 24, 10027008),
-				yf(D, c + 60, d + 148, "" + g + "$ SELL", 16777215, 0)
-			)
-			: Wf(c + 0 + 1, d + 136, 120, 24) && 0 == q[Gc] && 0 == Jb
-				? (Ef && (Jb = 1),
-					V(c + 0 + 1, d + 136, 119, 24, 10027008),
-					yf(D, c + 60, d + 148, "CLICK TO SELL", 16777215, 0)
-				)
-				: Wf(c + 0 + 1, d + 136, 120, 24) && 0 == q[Gc] && 1 == Jb
-					? (Ef && (Jb = 0),
-						V(c + 0 + 1, d + 136, 119, 24, 10027008),
-						yf(D, c + 60, d + 148, "CANCEL", 16777215, 0)
-					)
-					: 1 == Jb 
-						? yf(D, c + 60, d + 148, "CANCEL", 16777215, 0) 
-						: yf(D, c + 60, d + 148, "DRAG TO SELL", 16777215, 0);
-		Wf(c + 120 + 1, d + 136, 114, 24) && (Ef && (Jb = 0,
-			f = 52),
-			V(c + 120 + 1, d + 136, 114, 24, 10027008)
-		);
+		if (Wf(c + 0 + 1, d + 136, 120, 24) && 0 != q[Gc]) {
+				g = floor(w(q[Gc], Oc) / 8);
+				if (Ef) {
+					Ne();
+					pe.add(40, 200, 1, g, 0);
+					q[Gc] = 0;
+					Dc[Gc] = 0;
+					Ec[Gc] = 0;
+					te();
+				}
+				V(c + 0 + 1, d + 136, 119, 24, 10027008);
+				yf(D, c + 60, d + 148, "" + g + "$ SELL", 16777215, 0);
+		}
+		else if(Wf(c + 0 + 1, d + 136, 120, 24) && 0 == q[Gc] && 0 == Jb) {
+			if (Ef)
+				Jb = 1;
+			V(c + 0 + 1, d + 136, 119, 24, 10027008);
+			yf(D, c + 60, d + 148, "CLICK TO SELL", 16777215, 0);
+		}
+		else if (Wf(c + 0 + 1, d + 136, 120, 24) && 0 == q[Gc] && 1 == Jb) {
+			if (Ef)
+				Jb = 0;
+			V(c + 0 + 1, d + 136, 119, 24, 10027008);
+			yf(D, c + 60, d + 148, "CANCEL", 16777215, 0);
+		}
+		else if (1 == Jb) {
+			yf(D, c + 60, d + 148, "CANCEL", 16777215, 0);
+		}
+		else {
+			yf(D, c + 60, d + 148, "DRAG TO SELL", 16777215, 0);
+		}
+		if (Wf(c + 120 + 1, d + 136, 114, 24)) {
+			if (Ef) {
+				Jb = 0;
+				f = 52;
+			}
+			V(c + 120 + 1, d + 136, 114, 24, 10027008);
+		}
 		yf(D, c + 176, d + 148, "EXIT", 16777215, 0);
-		Jf(1)
+		
+		Jf(1);
 	} 
 	// book store?
 	else if (54 == f) {
@@ -1425,9 +1469,9 @@ function wf() {
 		V(c + 8, d + 16 + 12 * a, 144, 12, 10027008));
 		for (a = 0; a < k; a++)
 			e = jg[vb + a],
-			0 != e && (0 < (Ae[e] & Be) ? D.b(c + 8, d + 16 + 12 * a, Uf[e], 16777215, 0) : D.b(c + 8, d + 16 + 12 * a, "???", 16777215, 0));
+			0 != e && (0 < (Ae[e] & Be) ? D.b(c + 8, d + 16 + 12 * a, MAP_NAMES[e], 16777215, 0) : D.b(c + 8, d + 16 + 12 * a, "???", 16777215, 0));
 		e = jg[vb + wb];
-		0 != e && (0 < (Ae[e] & Be) ? D.b(c + 8, d + 16 + 12 * wb, Uf[e], 16711680, 0) : D.b(c + 8, d + 16 + 12 * wb, "???", 16711680, 0));
+		0 != e && (0 < (Ae[e] & Be) ? D.b(c + 8, d + 16 + 12 * wb, MAP_NAMES[e], 16711680, 0) : D.b(c + 8, d + 16 + 12 * wb, "???", 16711680, 0));
 		L(c + 0, d + 140, c + 160, d + 140, 16777215);
 		Wf(c + 8, d + 144 - 2, 48, 17) && (Ef && (vb = Zf(floor(vb / k) - 1, 0, floor((jg.length - 1) / k)) * k),
 		V(c + 8, d + 144 - 2, 48, 17, 10027008));
@@ -1483,15 +1527,25 @@ function wf() {
 				0 > B[e][tg] && kf.b(c + 256, d + 92 + 2, "        Po  ", 65280, 0);
 				0 > B[e][ug] && kf.b(c + 256, d + 92 + 2, "          Fr", 12632319, 0)
 			} else
-				0 < (Ae[e] & Be) ? (yf(D, c + 240, d + 40, "Information fee", 16777215, 0),
-				g = 1E3 * (vb + wb + 1),
-				Df(c + 240, d + 80, 160, 160) && (g <= MONEY && Ef && (Ne(),
-				Ae[e] |= kg,
-				MONEY -= g,
-				te()),
-				Hf(c + 240, d + 80, 120, 32, 10027008)),
-				yf(D, c + 240, d + 80, "" + g + "$ BUY", 16777215, 0)) : (yf(D, c + 240, d + 40, "?????", 16777215, 0),
-				yf(D, c + 240, d + 80, "???", 16777215, 0));
+				0 < (Ae[e] & Be) 
+				? (
+					yf(D, c + 240, d + 40, "Information fee", 16777215, 0),
+					g = 1E3 * (vb + wb + 1),
+					Df(c + 240, d + 80, 160, 160) && (
+						g <= MONEY && Ef && (
+							Ne(),
+							Ae[e] |= kg,
+							MONEY -= g,
+							te()
+						),
+						Hf(c + 240, d + 80, 120, 32, 10027008)
+					),
+					yf(D, c + 240, d + 80, "" + g + "$ BUY", 16777215, 0)
+				)
+				: (
+					yf(D, c + 240, d + 40, "?????", 16777215, 0),
+					yf(D, c + 240, d + 80, "???", 16777215, 0)
+				);
 		Jf(1)
 	}
 	else if (55 == f) {
@@ -1548,12 +1602,12 @@ function wf() {
 		Jf(1)
 	}
 	else if (59 == f) {
-		Tf(0),
-		Jf(0),
-		Vf(floor(255 * mb / 30)),
-		mb++,
+		Tf(0);
+		Jf(0);
+		Vf(floor(255 * mb / 30));
+		mb++;
 		if (30 == mb) {
-			mb = nb = sb = 0;
+			mb = CURRENT_ROOM_INDEX = sb = 0;
 			f = 6;
 			Ne();
 			Ae[h] |= Be;
@@ -1573,7 +1627,7 @@ function xf() {
 	var a, b, c;
 	if (70 == f)
 		h = 0,
-		nb = 1,
+		CURRENT_ROOM_INDEX = 1,
 		I.j(h) && (v.set(0, 26, I.o[0]),
 		v.set(1, 30, I.o[1]),
 		v.set(2, 34, I.o[2]),
@@ -1650,7 +1704,7 @@ function xf() {
 			f = 71);
 	else if (60 == f) {
 		if (h = 0,
-		nb = 1,
+		CURRENT_ROOM_INDEX = 1,
 		I.j(h)) {
 			v.set(0, 10, I.o[0]);
 			v.set(1, 11, I.o[1]);
@@ -1663,7 +1717,7 @@ function xf() {
 			Cf();
 			Ne();
 			for (a = 0; 8 > a; a++)
-				p[a] = kc[a];
+				CURRENT_LIFE_VALUE[a] = RANGER_MAX_LIFE[a];
 			for (a = 0; 8 > a; a++)
 				fc[a] = 0;
 			MONEY = 9999999;
@@ -1706,8 +1760,8 @@ function xf() {
 		J(Ba, b, c + 0 - 2, Ba.ITEMS_MAYBE, 16, 0, 0, Ba.ITEMS_MAYBE, 16, a << 24 | 16777215),
 		vg(Da, ra),
 		J(Da, b, c + 16 - 2, Da.ITEMS_MAYBE, 16, 0, 0, Da.ITEMS_MAYBE, 16, a << 24 | 16777215),
-		Xf = 0) : 62 == f ? 0 == p[0] + p[1] + p[2] + p[3] ? (sa = 2,
-		f++) : 0 == p[4] + p[5] + p[6] + p[7] && (sa = 1,
+		Xf = 0) : 62 == f ? 0 == CURRENT_LIFE_VALUE[0] + CURRENT_LIFE_VALUE[1] + CURRENT_LIFE_VALUE[2] + CURRENT_LIFE_VALUE[3] ? (sa = 2,
+		f++) : 0 == CURRENT_LIFE_VALUE[4] + CURRENT_LIFE_VALUE[5] + CURRENT_LIFE_VALUE[6] + CURRENT_LIFE_VALUE[7] && (sa = 1,
 		f++) : 63 == f ? (0 == ua && (ua = 1,
 		c = zg(47, 115, 99, 111, 114, 101, 47, 114, 97, 110, 103, 101, 114, 95, 118, 115, 46, 112, 104, 112, 63, 97, 61),
 		c += ha,
@@ -1738,7 +1792,7 @@ function xf() {
 		Gf(D, b + 60, c + 40, 2 == sa ? "WIN" : "LOSE", 255, 255, 255, a, 2 == sa ? 255 : 0, 0, 2 == sa ? 0 : 255, a, 32, 48),
 		0 != Eg && ("ok" == Fg[0] ? (D.M(b, c + 64, "" + Fg[4] + " win " + Fg[5] + " lose", 255, 255, 255, a, 0, 0, 0, a, 8, 12),
 		D.M(b, c + 80, "Winning per " + Fg[6] + "%", 255, 255, 255, a, 0, 0, 0, a, 8, 12)) : D.M(b, c + 64, " RANKING ERROR", 255, 255, 255, a, 0, 0, 0, a, 8, 12))),
-		V(0, 257, 512, 126, [13407305, 9480368, 7241784, 10993609, 11302740, 24586, 7297069, 7297069, 10053120][Me[h][nb][0]]),
+		V(0, 257, 512, 126, [13407305, 9480368, 7241784, 10993609, 11302740, 24586, 7297069, 7297069, 10053120][Me[h][CURRENT_ROOM_INDEX][0]]),
 		kf.M(10, 374, Hg, 0, 0, 0, 0, 0, 0, 0, 128, 5, 7),
 		Gf(D, 256, 328, "VS", 255, 255, 255, 255, 0, 0, 0, 255, 16, 24),
 		b = 40,
@@ -1764,7 +1818,7 @@ function xf() {
 		c = 316,
 		a = 0; 8 > a; a++)
 			4 <= a && (b = 224),
-			V(b + 32 * a, c - 12, floor(24 * p[a] / kc[a]), 4, 8388608),
+			V(b + 32 * a, c - 12, floor(24 * CURRENT_LIFE_VALUE[a] / RANGER_MAX_LIFE[a]), 4, 8388608),
 			e = ig(w(q[s + a], bd), 1),
 			g = w(q[s + a], Rc),
 			4 != g && 5 != g && 6 != g && V(b + 32 * a, c - 6, floor(23 * fc[a] / e) + 1, 2, 128),
@@ -1782,13 +1836,13 @@ da.fff = Tf;
 function Tf(a) {
 	var b;
 	I.b();
-	if (0 == h && 1 == nb || 20 == h && 1 == nb || 47 == h && 1 == nb || 77 == h && 1 == nb)
+	if (0 == h && 1 == CURRENT_ROOM_INDEX || 20 == h && 1 == CURRENT_ROOM_INDEX || 47 == h && 1 == CURRENT_ROOM_INDEX || 77 == h && 1 == CURRENT_ROOM_INDEX)
 		J(db, 400, 183, 117, 84, 0, 0, 78, 56, 16777215),
 		J(db, 40, 170, 156, 112, 0, 0, 78, 56, 16777215),
 		yf(D, 400, 168, "INN", 16777215, 13800762),
 		0 == h ? yf(D, 40, 152, "SHOP", 16777215, 13800762) : 20 == h ? yf(D, 40, 152, " COMPO SHOP", 16777215, 13800762) : 47 == h ? yf(D, 40, 152, " JUNK SHOP", 16777215, 13800762) : 77 == h && yf(D, 40, 152, " COMPO SHOP", 16777215, 13800762),
 		yf(D, 40, 184, "BOOK", 16777215, 13800762);
-	70 == h && 1 == nb && (eg(hb, 0, -288, 512, 512, 0, 0, 64, 64, 16777215),
+	70 == h && 1 == CURRENT_ROOM_INDEX && (eg(hb, 0, -288, 512, 512, 0, 0, 64, 64, 16777215),
 	52 == f && (yf(D, 256, 128, "FORGET", 16777215, 1054740),
 	yf(D, 256, 160, "INN", 16777215, 1054740),
 	yf(D, 256, 184, "BOOK", 16777215, 1054740)));
@@ -1799,11 +1853,11 @@ function Tf(a) {
 		ne.move(),
 		oe.move();
 	b = I;
-	if (55 != b.w && 89 != b.w && nb != Me[b.w].length - 1 || 0 == G.index) {
+	if (55 != b.w && 89 != b.w && CURRENT_ROOM_INDEX != Me[b.w].length - 1 || 0 == G.index) {
 		var c;
-		c = 7 == Me[h][nb][1] ? 8 * b.o[63] - 16 : 8 * b.I[63] - 16;
+		c = 7 == Me[h][CURRENT_ROOM_INDEX][1] ? 8 * b.o[63] - 16 : 8 * b.I[63] - 16;
 		ag(Ya, 480, c, 32, 24, 0, 0, 32, 24);
-		nb == Me[b.w].length - 1 ? 88 == b.w ? yf(kf, 496, c + 8, "END", 0, -1) : yf(kf, 496, c + 8, "MAP", 0, -1) : nb == Me[b.w].length - 2 ? yf(kf, 496, c + 8, "BOSS", 0, -1) : yf(kf, 496, c + 8, "NEXT", 0, -1)
+		CURRENT_ROOM_INDEX == Me[b.w].length - 1 ? 88 == b.w ? yf(kf, 496, c + 8, "END", 0, -1) : yf(kf, 496, c + 8, "MAP", 0, -1) : CURRENT_ROOM_INDEX == Me[b.w].length - 2 ? yf(kf, 496, c + 8, "BOSS", 0, -1) : yf(kf, 496, c + 8, "NEXT", 0, -1)
 	}
 	G.b();
 	pe.b();
@@ -1921,7 +1975,7 @@ function Tf(a) {
 			Ma.f[b] = 0) : Ma.f[b] = 0);
 		C = Ma.f;
 		for (b = 0; 4 > b; b++)
-			0 != p[b] && (Hf(v.a[b][0].x, v.a[b][0].y, 3, 3, 0),
+			0 != CURRENT_LIFE_VALUE[b] && (Hf(v.a[b][0].x, v.a[b][0].y, 3, 3, 0),
 			Hf(v.a[b][9].x, v.a[b][9].y, 1, 1, 0),
 			Hf(v.a[b][10].x, v.a[b][10].y, 1, 1, 0));
 		for (b = 0; b < oe.index; b++)
@@ -1932,9 +1986,9 @@ function Tf(a) {
 	}
 	ne.b();
 	Xf = 1;
-	V(4, 4, 8 * (Uf[h].length + 6) + 8, 20, 2151694400);
+	V(4, 4, 8 * (MAP_NAMES[h].length + 6) + 8, 20, 2151694400);
 	Xf = 0;
-	0 == h && 1 == nb || 20 == h && 1 == nb || 47 == h && 1 == nb || 70 == h && 1 == nb || 77 == h && 1 == nb ? D.b(8, 8, Uf[h], 16777215, 0) : nb + 1 == Me[h].length ? D.b(8, 8, Uf[h] + ": BOSS", 16777215, 0) : D.b(8, 8, Uf[h] + ": " + (nb + 1), 16777215, 0);
+	0 == h && 1 == CURRENT_ROOM_INDEX || 20 == h && 1 == CURRENT_ROOM_INDEX || 47 == h && 1 == CURRENT_ROOM_INDEX || 70 == h && 1 == CURRENT_ROOM_INDEX || 77 == h && 1 == CURRENT_ROOM_INDEX ? D.b(8, 8, MAP_NAMES[h], 16777215, 0) : CURRENT_ROOM_INDEX + 1 == Me[h].length ? D.b(8, 8, MAP_NAMES[h] + ": BOSS", 16777215, 0) : D.b(8, 8, MAP_NAMES[h] + ": " + (CURRENT_ROOM_INDEX + 1), 16777215, 0);
 	Xf = 1;
 	V(364, 4, 56, 20, 2151694400);
 	Xf = 0;
@@ -1989,106 +2043,106 @@ function Cf() {
 			e = w(q[s + a], AGI_MIN_INDEX),
 			g = w(q[s + a], AGI_MAX_INDEX),
 			k = w(q[s + a], RANGE_INDEX);
-		1 == ec[a] ? (oc[a] = b + floor(lc[a] / 2),
-		pc[a] = d + floor(lc[a] / 2),
-		qc[a] = e < ig(e - mc[a], 5) ? e : ig(e - mc[a], 5),
-		rc[a] = g < ig(g - mc[a], 10) ? g : ig(g - mc[a], 10),
-		tc[a] = k,
-		kc[a] = 50 + 10 * LIFE_LEVELS[a] + 4 * lc[a] + 3 * mc[a] + 2 * nc[a]) : 2 == ec[a] ? (pc[a] = d + lc[a],
-		oc[a] = b + mc[a] < pc[a] ? b + mc[a] : pc[a],
-		qc[a] = e,
-		rc[a] = g,
-		tc[a] = k,
-		x(s + a, Hd) && (tc[a] += y(s + a, t)),
-		x(s + a, ae) && (tc[a] += y(s + a, id)),
-		kc[a] = 50 + 10 * LIFE_LEVELS[a] + 4 * lc[a] + 4 * mc[a] + 2 * nc[a]) : 3 == ec[a] ? (oc[a] = b + floor(mc[a] / 4),
-		pc[a] = d + floor(mc[a] / 3),
-		qc[a] = e,
-		rc[a] = g,
-		tc[a] = k + 2 * lc[a],
-		x(s + a, Id) && (tc[a] += y(s + a, t)),
-		kc[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 3 * mc[a] + 2 * nc[a]) : 4 == ec[a] ? (oc[a] = b + floor(nc[a] / 4),
-		pc[a] = d + floor(nc[a] / 3),
-		qc[a] = ig(e - mc[a], 50),
-		rc[a] = ig(g - mc[a], 60),
-		tc[a] = k + 2 * lc[a],
-		x(s + a, Id) && (tc[a] += y(s + a, t)),
-		kc[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 2 * mc[a] + 2 * nc[a]) : 5 == ec[a] ? (oc[a] = b,
-		pc[a] = d,
-		qc[a] = e,
-		rc[a] = g,
-		tc[a] = k + 2 * nc[a],
-		x(s + a, Id) && (tc[a] += y(s + a, t)),
-		kc[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 2 * mc[a] + 2 * nc[a]) : 6 == ec[a] ? (oc[a] = b + floor(b * lc[a] / 50),
-		pc[a] = d + floor(d * lc[a] / 50),
-		qc[a] = ig(floor(50 * e / (mc[a] + 50)), 5),
-		rc[a] = ig(floor(50 * g / (mc[a] + 50)), 10),
-		tc[a] = k,
-		x(s + a, Id) && (tc[a] += y(s + a, t)),
-		kc[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 2 * mc[a] + 2 * nc[a]) : 7 == ec[a] ? (oc[a] = b + floor(lc[a] / 2),
-		pc[a] = d + floor(lc[a] / 2),
-		qc[a] = e,
-		rc[a] = g,
-		tc[a] = k,
-		kc[a] = 50 + 10 * LIFE_LEVELS[a] + 3 * lc[a] + 3 * mc[a] + 2 * nc[a]) : 8 == ec[a] && (oc[a] = b + floor(lc[a] / 4),
-		pc[a] = d + floor(lc[a] / 3),
-		qc[a] = e,
-		rc[a] = g,
-		tc[a] = k,
-		x(s + a, Id) && (tc[a] += y(s + a, t)),
-		kc[a] = 50 + 10 * LIFE_LEVELS[a] + 4 * lc[a] + 2 * mc[a] + 2 * nc[a]);
-		x(s + a, ld) && (kc[a] += y(s + a, t));
-		x(s + a, Pd) && (kc[a] += floor(y(s + a, t) * kc[a] / 100));
-		x(s + a, ce) && (kc[a] += y(s + a, id));
-		1 == w(q[s + a], Rc) || 2 == w(q[s + a], Rc) || 3 == w(q[s + a], Rc) || 7 == w(q[s + a], Rc) || 8 == w(q[s + a], Rc) ? (x(s + a, qd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, rd) && (oc[a] += floor(y(s + a, t) * oc[a] / 100),
-		pc[a] += floor(y(s + a, t) * pc[a] / 100)),
-		x(s + a, ae) && (oc[a] += floor(y(s + a, t) * oc[a] / 100),
-		pc[a] += floor(y(s + a, t) * pc[a] / 100))) : 4 == w(q[s + a], Rc) || 5 == w(q[s + a], Rc) ? (x(s + a, yd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, Ad) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, Cd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, Dd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id))) : 6 == w(q[s + a], Rc) && (x(s + a, qd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, rd) && (oc[a] += floor(y(s + a, t) * oc[a] / 100),
-		pc[a] += floor(y(s + a, t) * pc[a] / 100)),
-		0 == w(q[s + a], cd) && (x(s + a, yd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, Ad) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, Cd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id)),
-		x(s + a, Dd) && (oc[a] += y(s + a, t),
-		pc[a] += y(s + a, id))));
+		1 == ec[a] ? (RANGER_MIN_AT[a] = b + floor(lc[a] / 2),
+		RANGER_MAX_AT[a] = d + floor(lc[a] / 2),
+		RANGER_MIN_AGI[a] = e < ig(e - mc[a], 5) ? e : ig(e - mc[a], 5),
+		RANGER_MAX_AGI[a] = g < ig(g - mc[a], 10) ? g : ig(g - mc[a], 10),
+		RANGER_RANGE[a] = k,
+		RANGER_MAX_LIFE[a] = 50 + 10 * LIFE_LEVELS[a] + 4 * lc[a] + 3 * mc[a] + 2 * nc[a]) : 2 == ec[a] ? (RANGER_MAX_AT[a] = d + lc[a],
+		RANGER_MIN_AT[a] = b + mc[a] < RANGER_MAX_AT[a] ? b + mc[a] : RANGER_MAX_AT[a],
+		RANGER_MIN_AGI[a] = e,
+		RANGER_MAX_AGI[a] = g,
+		RANGER_RANGE[a] = k,
+		x(s + a, Hd) && (RANGER_RANGE[a] += y(s + a, t)),
+		x(s + a, ae) && (RANGER_RANGE[a] += y(s + a, id)),
+		RANGER_MAX_LIFE[a] = 50 + 10 * LIFE_LEVELS[a] + 4 * lc[a] + 4 * mc[a] + 2 * nc[a]) : 3 == ec[a] ? (RANGER_MIN_AT[a] = b + floor(mc[a] / 4),
+		RANGER_MAX_AT[a] = d + floor(mc[a] / 3),
+		RANGER_MIN_AGI[a] = e,
+		RANGER_MAX_AGI[a] = g,
+		RANGER_RANGE[a] = k + 2 * lc[a],
+		x(s + a, Id) && (RANGER_RANGE[a] += y(s + a, t)),
+		RANGER_MAX_LIFE[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 3 * mc[a] + 2 * nc[a]) : 4 == ec[a] ? (RANGER_MIN_AT[a] = b + floor(nc[a] / 4),
+		RANGER_MAX_AT[a] = d + floor(nc[a] / 3),
+		RANGER_MIN_AGI[a] = ig(e - mc[a], 50),
+		RANGER_MAX_AGI[a] = ig(g - mc[a], 60),
+		RANGER_RANGE[a] = k + 2 * lc[a],
+		x(s + a, Id) && (RANGER_RANGE[a] += y(s + a, t)),
+		RANGER_MAX_LIFE[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 2 * mc[a] + 2 * nc[a]) : 5 == ec[a] ? (RANGER_MIN_AT[a] = b,
+		RANGER_MAX_AT[a] = d,
+		RANGER_MIN_AGI[a] = e,
+		RANGER_MAX_AGI[a] = g,
+		RANGER_RANGE[a] = k + 2 * nc[a],
+		x(s + a, Id) && (RANGER_RANGE[a] += y(s + a, t)),
+		RANGER_MAX_LIFE[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 2 * mc[a] + 2 * nc[a]) : 6 == ec[a] ? (RANGER_MIN_AT[a] = b + floor(b * lc[a] / 50),
+		RANGER_MAX_AT[a] = d + floor(d * lc[a] / 50),
+		RANGER_MIN_AGI[a] = ig(floor(50 * e / (mc[a] + 50)), 5),
+		RANGER_MAX_AGI[a] = ig(floor(50 * g / (mc[a] + 50)), 10),
+		RANGER_RANGE[a] = k,
+		x(s + a, Id) && (RANGER_RANGE[a] += y(s + a, t)),
+		RANGER_MAX_LIFE[a] = 50 + 8 * LIFE_LEVELS[a] + 2 * lc[a] + 2 * mc[a] + 2 * nc[a]) : 7 == ec[a] ? (RANGER_MIN_AT[a] = b + floor(lc[a] / 2),
+		RANGER_MAX_AT[a] = d + floor(lc[a] / 2),
+		RANGER_MIN_AGI[a] = e,
+		RANGER_MAX_AGI[a] = g,
+		RANGER_RANGE[a] = k,
+		RANGER_MAX_LIFE[a] = 50 + 10 * LIFE_LEVELS[a] + 3 * lc[a] + 3 * mc[a] + 2 * nc[a]) : 8 == ec[a] && (RANGER_MIN_AT[a] = b + floor(lc[a] / 4),
+		RANGER_MAX_AT[a] = d + floor(lc[a] / 3),
+		RANGER_MIN_AGI[a] = e,
+		RANGER_MAX_AGI[a] = g,
+		RANGER_RANGE[a] = k,
+		x(s + a, Id) && (RANGER_RANGE[a] += y(s + a, t)),
+		RANGER_MAX_LIFE[a] = 50 + 10 * LIFE_LEVELS[a] + 4 * lc[a] + 2 * mc[a] + 2 * nc[a]);
+		x(s + a, ld) && (RANGER_MAX_LIFE[a] += y(s + a, t));
+		x(s + a, Pd) && (RANGER_MAX_LIFE[a] += floor(y(s + a, t) * RANGER_MAX_LIFE[a] / 100));
+		x(s + a, ce) && (RANGER_MAX_LIFE[a] += y(s + a, id));
+		1 == w(q[s + a], Rc) || 2 == w(q[s + a], Rc) || 3 == w(q[s + a], Rc) || 7 == w(q[s + a], Rc) || 8 == w(q[s + a], Rc) ? (x(s + a, qd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, rd) && (RANGER_MIN_AT[a] += floor(y(s + a, t) * RANGER_MIN_AT[a] / 100),
+		RANGER_MAX_AT[a] += floor(y(s + a, t) * RANGER_MAX_AT[a] / 100)),
+		x(s + a, ae) && (RANGER_MIN_AT[a] += floor(y(s + a, t) * RANGER_MIN_AT[a] / 100),
+		RANGER_MAX_AT[a] += floor(y(s + a, t) * RANGER_MAX_AT[a] / 100))) : 4 == w(q[s + a], Rc) || 5 == w(q[s + a], Rc) ? (x(s + a, yd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, Ad) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, Cd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, Dd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id))) : 6 == w(q[s + a], Rc) && (x(s + a, qd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, rd) && (RANGER_MIN_AT[a] += floor(y(s + a, t) * RANGER_MIN_AT[a] / 100),
+		RANGER_MAX_AT[a] += floor(y(s + a, t) * RANGER_MAX_AT[a] / 100)),
+		0 == w(q[s + a], cd) && (x(s + a, yd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, Ad) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, Cd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id)),
+		x(s + a, Dd) && (RANGER_MIN_AT[a] += y(s + a, t),
+		RANGER_MAX_AT[a] += y(s + a, id))));
 		x(s + a, Gd) && (b = y(s + a, t),
-		qc[a] -= floor(qc[a] * b / 100),
-		rc[a] -= floor(rc[a] * b / 100));
-		oc[a] += floor(oc[a] * Ac[a] / 100);
-		pc[a] += floor(pc[a] * Ac[a] / 100);
+		RANGER_MIN_AGI[a] -= floor(RANGER_MIN_AGI[a] * b / 100),
+		RANGER_MAX_AGI[a] -= floor(RANGER_MAX_AGI[a] * b / 100));
+		RANGER_MIN_AT[a] += floor(RANGER_MIN_AT[a] * Ac[a] / 100);
+		RANGER_MAX_AT[a] += floor(RANGER_MAX_AT[a] * Ac[a] / 100);
 		if (1 == ga)
-			kc[a] *= [1, 5, 5, 5, 5, 3, 4, 5, 5][ec[a]],
-			kc[a] *= $b[1] + 1;
-		p[a] = K(p[a], 0, kc[a])
+			RANGER_MAX_LIFE[a] *= [1, 5, 5, 5, 5, 3, 4, 5, 5][ec[a]],
+			RANGER_MAX_LIFE[a] *= $b[1] + 1;
+		CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a], 0, RANGER_MAX_LIFE[a])
 	}
 	for (a = 0; a < c; a++)
 		Ac[a] = 0,
 		Bc[a] = 0,
 		Cc[a] = 0;
 	for (a = 0; a < c; a++)
-		if (5 == ec[a] && 5 == w(q[s + a], Rc) && 0 != p[a])
+		if (5 == ec[a] && 5 == w(q[s + a], Rc) && 0 != CURRENT_LIFE_VALUE[a])
 			for (d = floor(floor(v.a[a][9].x + v.a[a][10].x) / 2),
 			e = floor(floor(v.a[a][9].y + v.a[a][10].y) / 2),
 			b = a >> 2 << 2; b < (a >> 2 << 2) + 4; b++)
-				0 != p[b] && (g = floor(floor(v.a[b][9].y + v.a[b][10].y) / 2),
-				Kg(d - floor(floor(v.a[b][9].x + v.a[b][10].x) / 2)) < tc[a] && Kg(e - g) < tc[a] && (Ac[b] += lc[a],
+				0 != CURRENT_LIFE_VALUE[b] && (g = floor(floor(v.a[b][9].y + v.a[b][10].y) / 2),
+				Kg(d - floor(floor(v.a[b][9].x + v.a[b][10].x) / 2)) < RANGER_RANGE[a] && Kg(e - g) < RANGER_RANGE[a] && (Ac[b] += lc[a],
 				Bc[b] += mc[a],
 				Cc[b] += nc[a]));
 	for (a = 0; a < c; a++)
-		0 != p[a] && x(s + a, Nd) && (Ac[a] += y(s + a, t));
+		0 != CURRENT_LIFE_VALUE[a] && x(s + a, Nd) && (Ac[a] += y(s + a, t));
 	te()
 }
 da.fff = Jf;
@@ -2096,7 +2150,7 @@ da.fff = Jf;
 function Jf(a) {
 	var b, c, d, e, g;
 	(Lg || Ef) && 256 <= fg ? ub = !0 : (Lg || Ef) && 256 > fg && (ub = !1);
-	V(0, 257, 512, 126, [13407305, 9480368, 7241784, 7630870, 11302740, 13599032, 10993609, 6322320, 1921195, 10053120, 6714227, 6313296, 6313296][Me[h][nb][0]]);
+	V(0, 257, 512, 126, [13407305, 9480368, 7241784, 7630870, 11302740, 13599032, 10993609, 6322320, 1921195, 10053120, 6714227, 6313296, 6313296][Me[h][CURRENT_ROOM_INDEX][0]]);
 	kf.M(10, 374, Hg, 0, 0, 0, 0, 0, 0, 0, 128, 5, 7);
 	e = 10;
 	g = 260;
@@ -2118,7 +2172,7 @@ function Jf(a) {
 		te()
 	}
 	if (4 > l) {
-		b = "LP  " + p[l] + "/" + kc[l];
+		b = "LP  " + CURRENT_LIFE_VALUE[l] + "/" + RANGER_MAX_LIFE[l];
 		d = "STR " + lc[l];
 		var r = "DEX " + mc[l],
 			m = "MAG " + nc[l];
@@ -2131,9 +2185,9 @@ function Jf(a) {
 			kf.b(e, g + 28 + 2, "              AT ", -1, 0),
 			kf.b(e, g + 40 + 2, "              AGI ", -1, 0),
 			kf.b(e, g + 52 + 2, "              RANGE ", -1, 0),
-			kf.b(e, g + 28 + 2, "                 " + oc[l] + "-" + pc[l], 0, -1),
-			kf.b(e, g + 40 + 2, "                  " + qc[l] + "-" + rc[l], 0, -1),
-			kf.b(e, g + 52 + 2, "                    " + tc[l], 0, -1),
+			kf.b(e, g + 28 + 2, "                 " + RANGER_MIN_AT[l] + "-" + RANGER_MAX_AT[l], 0, -1),
+			kf.b(e, g + 40 + 2, "                  " + RANGER_MIN_AGI[l] + "-" + RANGER_MAX_AGI[l], 0, -1),
+			kf.b(e, g + 52 + 2, "                    " + RANGER_RANGE[l], 0, -1),
 			5 == ec[l])
 				kf.b(e, g + 64 + 2, "AURA          AURA", -1, 0),
 				kf.b(e, g + 64 + 2, "     (AT)" + lc[l] + "%", 0, -1),
@@ -2155,8 +2209,8 @@ function Jf(a) {
 		v.step[l] == Mg ? (k = ig(floor(MONEY / 10), 10 * PLAYER_LEVEL[0]),
 		b = "Revival $ " + k,
 		D.b(e, g + 40, b, 8421504, 0),
-		Wf(e, g + 40, 8 * b.length, 12) && ub && (k <= MONEY && Ef && 0 != p[0] + p[1] + p[2] + p[3] && (Ne(),
-		p[l] += floor(kc[l] / 4),
+		Wf(e, g + 40, 8 * b.length, 12) && ub && (k <= MONEY && Ef && 0 != CURRENT_LIFE_VALUE[0] + CURRENT_LIFE_VALUE[1] + CURRENT_LIFE_VALUE[2] + CURRENT_LIFE_VALUE[3] && (Ne(),
+		CURRENT_LIFE_VALUE[l] += floor(RANGER_MAX_LIFE[l] / 4),
 		MONEY -= k,
 		v.set(l, floor(v.a[l][0].x / 8), floor(v.a[l][0].y / 8)),
 		te()),
@@ -2230,7 +2284,7 @@ function Jf(a) {
 	Gf(kf, e - 15, g + 84 + 12, "COMPO", 0, 0, 0, 0, 0, 0, 0, 128, 5, 7);
 	for (b = 0; 4 > b; b++)
 		V(e + 32 * b, g - 12, 24, 4, 0),
-		V(e + 32 * b, g - 12, floor(24 * p[b] / kc[b]), 4, 10027008),
+		V(e + 32 * b, g - 12, floor(24 * CURRENT_LIFE_VALUE[b] / RANGER_MAX_LIFE[b]), 4, 10027008),
 		k = ig(w(q[s + b], bd), 1),
 		c = w(q[s + b], Rc),
 		4 != c && 5 != c && 6 != c && V(e + 32 * b, g - 6, floor(23 * fc[b] / k) + 1, 2, 128),
@@ -2523,7 +2577,7 @@ Pg.prototype.kb = function(a, b) {
 		Tg(d, 0.95),
 		this.h[a] |= 2;
 	var m = 0.5;
-	8 == Me[I.w][nb][0] && (m = 1);
+	8 == Me[I.w][CURRENT_ROOM_INDEX][0] && (m = 1);
 	for (var n = 0; n < e; n++)
 		g = c.y + d.y,
 		k = K(c.x, 0, 511) >> 3,
@@ -2600,7 +2654,7 @@ Pg.prototype.K = function(a, b, c, d, e, g, k, r, m, n) {
 			this.qa[n] = 0,
 			E = 16744576);
 			Ne();
-			p[n] = K(p[n] - M, 0, kc[n]);
+			CURRENT_LIFE_VALUE[n] = K(CURRENT_LIFE_VALUE[n] - M, 0, RANGER_MAX_LIFE[n]);
 			te();
 			2 > wc && ne.add(this.a[n][0].x, this.a[n][0].y, F, M, E);
 			this.L += M;
@@ -2620,11 +2674,11 @@ Pg.prototype.jb = function() {
 			a.x = cg - this.c[tb][0].x;
 			a.y = fg - (this.c[tb][0].y - 8);
 			c = Sg(a);
-			20 > c && c < b && (0 != p[tb] || 0 != zc) && (b = c,
+			20 > c && c < b && (0 != CURRENT_LIFE_VALUE[tb] || 0 != zc) && (b = c,
 			this.v = tb,
 			this.T = 0);
 			for (var d = 0; 4 > d; d++)
-				if (0 != p[d] || 0 != zc)
+				if (0 != CURRENT_LIFE_VALUE[d] || 0 != zc)
 					for (var e = 0; 10 > e; e++)
 						a.x = cg - this.c[d][e].x,
 						a.y = fg - this.c[d][e].y,
@@ -2665,8 +2719,8 @@ Pg.prototype.p = function(a, b, c, d) {
 		ta = w(g, 33),
 		ya = 0,
 		rb = w(g, 9),
-		ia = 8 > a ? oc[a] : w(g, AT_MIN_INDEX),
-		ka = 8 > a ? pc[a] : w(g, AT_MAX_INDEX),
+		ia = 8 > a ? RANGER_MIN_AT[a] : w(g, AT_MIN_INDEX),
+		ka = 8 > a ? RANGER_MAX_AT[a] : w(g, AT_MAX_INDEX),
 		za = w(g, Vc),
 		bb = w(g, 13),
 		ab = w(g, $c),
@@ -2920,8 +2974,8 @@ function Yg(a, b) {
 	if (0 != uc[b] || 1 == ga)
 		if (0 < a.Za[b])
 			a.Za[b]--;
-		else if (!(20 > floor(100 * p[b] / kc[b]) && 1 != ga && 0 == vc)) {
-			var c = 0.5 * (a.a[b][9].x + a.a[b][10].x), d = 0.5 * (a.a[b][9].y + a.a[b][10].y), e = tc[b], g;
+		else if (!(20 > floor(100 * CURRENT_LIFE_VALUE[b] / RANGER_MAX_LIFE[b]) && 1 != ga && 0 == vc)) {
+			var c = 0.5 * (a.a[b][9].x + a.a[b][10].x), d = 0.5 * (a.a[b][9].y + a.a[b][10].y), e = RANGER_RANGE[b], g;
 			g = 1 != ga ? G.m(c - 200 - e, d - 20 - e, c + 200 + e, d + 100 + e) : v.m(c - 600, d - 300, c + 600, d + 300, 1 - (b >> 2) << 2);
 			-1 != g && (a.Za[b] = 15,
 			e = 0.6,
@@ -2942,10 +2996,10 @@ function Yg(a, b) {
 }
 
 function Zg(a, b) {
-	if (0 != uc[b] && !(20 > floor(100 * p[b] / kc[b]) && 0 == vc)) {
+	if (0 != uc[b] && !(20 > floor(100 * CURRENT_LIFE_VALUE[b] / RANGER_MAX_LIFE[b]) && 0 == vc)) {
 		var c = 0.5 * (a.a[b][9].x + a.a[b][10].x),
 			d = 0.5 * (a.a[b][9].y + a.a[b][10].y),
-			e = tc[b],
+			e = RANGER_RANGE[b],
 			e = 1 != ga ? G.m(c - 200 - e, d - 100 - e, c + 200 + e, d + 100 + e) : v.m(c - 600, d - 300, c + 600, d + 300, 1 - (b >> 2) << 2);
 		-1 != e && 9 == I.e[floor(K(d, 8, 383) / 8)][floor(K(c, 0, 511) / 8)] && (c < (1 != ga ? G.a[e][G.n].x : a.a[e][2].x) ? (a.a[b][0].x += 0.25,
 		a.a[b][1].x += 0.25) : (a.a[b][0].x -= 0.25,
@@ -2965,26 +3019,26 @@ Pg.prototype.move = function() {
 	this.jb();
 	var d = 1 != ga ? 4 : 8;
 	for (a = 0; a < d; a++)
-		if (0 < this.D[a] && 0 < p[a] && (this.D[a]--,
+		if (0 < this.D[a] && 0 < CURRENT_LIFE_VALUE[a] && (this.D[a]--,
 		Ne(),
-		p[a] = ig(p[a] - this.H[a], 0),
+		CURRENT_LIFE_VALUE[a] = ig(CURRENT_LIFE_VALUE[a] - this.H[a], 0),
 		te()),
-		0 < this.B[a] && 0 < p[a])
+		0 < this.B[a] && 0 < CURRENT_LIFE_VALUE[a])
 			this.B[a]--;
 		else {
-			if (0 < this.C[a] && 0 < p[a] && (this.C[a]--,
+			if (0 < this.C[a] && 0 < CURRENT_LIFE_VALUE[a] && (this.C[a]--,
 			A(100) < this.X[a]))
 				continue;
-			0 != p[a] && (this.step[a] = 0 == q[s + a] ? 0 : ec[a]);
-			if ((55 != h && 89 != h && nb != Me[h].length - 1 || 0 == G.index) && 0 < (this.h[a] & 1) && 0 != p[a]) {
+			0 != CURRENT_LIFE_VALUE[a] && (this.step[a] = 0 == q[s + a] ? 0 : ec[a]);
+			if ((55 != h && 89 != h && CURRENT_ROOM_INDEX != Me[h].length - 1 || 0 == G.index) && 0 < (this.h[a] & 1) && 0 != CURRENT_LIFE_VALUE[a]) {
 				b = (this.a[a][9].x + this.a[a][10].x) / 2;
 				c = (this.a[a][9].y + this.a[a][10].y) / 2;
 				var e = I.I[63];
-				7 == Me[h][nb][1] && (e = I.o[63]);
-				500 < b && 10 > Kg(8 * e - c) && (sb = nb != Me[h].length - 1 ? 1 : 2)
+				7 == Me[h][CURRENT_ROOM_INDEX][1] && (e = I.o[63]);
+				500 < b && 10 > Kg(8 * e - c) && (sb = CURRENT_ROOM_INDEX != Me[h].length - 1 ? 1 : 2)
 			}
 			this.count[a]++;
-			if (0 == p[a])
+			if (0 == CURRENT_LIFE_VALUE[a])
 				for (b = 0; 11 > b; b++)
 					W(this.a[a][b], this.c[a][b], 0.05, 0.99);
 			else if (2 == this.h[a])
@@ -3005,7 +3059,7 @@ Pg.prototype.move = function() {
 			else
 				for (b = 0; 11 > b; b++)
 					W(this.a[a][b], this.c[a][b], 0.05, 0.99);
-			if (0 == p[a] && this.step[a] != Mg) {
+			if (0 == CURRENT_LIFE_VALUE[a] && this.step[a] != Mg) {
 				this.step[a] = Mg;
 				for (b = 0; 11 > b; b++)
 					this.a[a][b].x += N(-2, 2),
@@ -3016,8 +3070,8 @@ Pg.prototype.move = function() {
 						x(s + e + b, Xd) && A(100) < y(s + e + b, t) && (c = v.m(this.a[a][0].x - 600, this.a[a][0].y - 300, this.a[a][0].x + 600, this.a[a][0].y + 300, a >> 2 << 2),
 						-1 != c && v.p(y(s + e + b, id), this.a[a][0].x, this.a[a][0].y, c))
 			}
-			this.v == a && 1 != ga && (this.a[this.v][this.T].x += (cg - this.a[this.v][this.T].x) * (0 == p[a] ? 0.04 : 0.2),
-			this.a[this.v][this.T].y += (fg - this.a[this.v][this.T].y) * (0 == p[a] ? 0.04 : 0.2));
+			this.v == a && 1 != ga && (this.a[this.v][this.T].x += (cg - this.a[this.v][this.T].x) * (0 == CURRENT_LIFE_VALUE[a] ? 0.04 : 0.2),
+			this.a[this.v][this.T].y += (fg - this.a[this.v][this.T].y) * (0 == CURRENT_LIFE_VALUE[a] ? 0.04 : 0.2));
 			0 == this.step[a] || 1 == this.step[a] ? this.sa(a) : 2 == this.step[a] ? this.ta(a) : 3 == this.step[a] ? this.ua(a) : 4 == this.step[a] ? this.ma(a) : 5 == this.step[a] ? this.na(a) : 6 == this.step[a] ? this.va(a) : 7 == this.step[a] ? this.wa(a) : 8 == this.step[a] ? this.xa(a) : this.step[a] == Mg && (Y(this.a[a][1], this.a[a][2], 3.6, 0.5, 0.5),
 			Y(this.a[a][3], this.a[a][5], 4.8, 0.5, 0.5),
 			Y(this.a[a][4], this.a[a][6], 4.8, 0.5, 0.5),
@@ -3032,10 +3086,10 @@ Pg.prototype.move = function() {
 da.fff = Pg.prototype.sa;
 Pg.prototype.sa = function(a) {
 	var b, c, d = new Qg, e = 1 - (a >> 2) << 2;
-	b = oc[a];
-	var g = pc[a],
-		k = qc[a] + $g(rc[a] - qc[a] + 1);
-	c = tc[a];
+	b = RANGER_MIN_AT[a];
+	var g = RANGER_MAX_AT[a],
+		k = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1);
+	c = RANGER_RANGE[a];
 	if (0 != this.h[a] && 0 != this.step[a] && this.v != a) {
 		0 < this.l[a] && this.l[a]--;
 		var r = 0.5 * (this.a[a][9].x + this.a[a][10].x),
@@ -3063,7 +3117,7 @@ Pg.prototype.sa = function(a) {
 				fc[a] = 0,
 				this.p(a, this.a[a][this.g[a]].x, this.a[a][this.g[a]].y, c);
 			x(s + a, be) && (k = y(s + a, t),
-			p[a] = K(p[a] + k, 0, kc[a]),
+			CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + k, 0, RANGER_MAX_LIFE[a]),
 			ne.add(this.a[a][0].x, this.a[a][0].y, 0, k, 65280));
 			te()
 		}
@@ -3083,7 +3137,7 @@ Pg.prototype.sa = function(a) {
 		this.g[a] = -1;
 		x(s + a, vd) && (k = ig(1, floor(this.L * y(s + a, t) / 100)),
 		Ne(),
-		p[a] = K(p[a] + k, 0, kc[a]),
+		CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + k, 0, RANGER_MAX_LIFE[a]),
 		te(),
 		ne.add(this.a[a][0].x, this.a[a][0].y, 0, k, 65280));
 		x(s + a, wd) && 0 == ga && A(100) < y(s + a, t) && pe.add(this.a[a][0].x, this.a[a][0].y, 2, 0, 0);
@@ -3116,10 +3170,10 @@ Pg.prototype.sa = function(a) {
 da.fff = Pg.prototype.ta;
 Pg.prototype.ta = function(a) {
 	var b, c, d = new Qg, e = 1 - (a >> 2) << 2;
-	b = oc[a];
-	var g = pc[a],
-		k = qc[a] + $g(rc[a] - qc[a] + 1),
-		r = tc[a];
+	b = RANGER_MIN_AT[a];
+	var g = RANGER_MAX_AT[a],
+		k = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1),
+		r = RANGER_RANGE[a];
 	if (0 != this.h[a] && this.v != a) {
 		0 < this.l[a] && this.l[a]--;
 		var m = 0.5 * (this.a[a][9].x + this.a[a][10].x),
@@ -3142,7 +3196,7 @@ Pg.prototype.ta = function(a) {
 		fc[a] == k && 0 < k && (fc[a] = 0,
 		this.pa[a] = w(q[s + a], 41)),
 		x(s + a, be) && (k = y(s + a, t),
-		p[a] = K(p[a] + k, 0, kc[a]),
+		CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + k, 0, RANGER_MAX_LIFE[a]),
 		ne.add(this.a[a][0].x, this.a[a][0].y, 0, k, 65280)),
 		te());
 		-1 == c && Yg(this, a);
@@ -3158,7 +3212,7 @@ Pg.prototype.ta = function(a) {
 	-1 != (1 != ga ? G.K(1, 0, 0, b, g, c, k, Kg(d.x), Kg(d.y)) : v.K(1, 0, 0, b, g, c, k, Kg(d.x), Kg(d.y), e)) && (this.g[a] = -1,
 	x(s + a, vd) && (k = ig(1, floor(this.L * y(s + a, t) / 100)),
 	Ne(),
-	p[a] = K(p[a] + k, 0, kc[a]),
+	CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + k, 0, RANGER_MAX_LIFE[a]),
 	te(),
 	ne.add(this.a[a][0].x, this.a[a][0].y, 0, k, 65280)),
 	x(s + a, wd) && 0 == ga && A(100) < y(s + a, t) && pe.add(this.a[a][0].x, this.a[a][0].y, 2, 0, 0),
@@ -3193,8 +3247,8 @@ da.fff = Pg.prototype.ua;
 Pg.prototype.ua = function(a) {
 	var b;
 	b = 1 - (a >> 2) << 2;
-	var c = qc[a] + $g(rc[a] - qc[a] + 1),
-		d = tc[a],
+	var c = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1),
+		d = RANGER_RANGE[a],
 		e = 0.5 * (this.a[a][9].x + this.a[a][10].x),
 		g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	b = 1 != ga ? G.m(e - d, g - d, e + d, g + d) : v.m(e - d, g - d, e + d, g + d, b);
@@ -3212,7 +3266,7 @@ Pg.prototype.ua = function(a) {
 	this.g[a] = -1,
 	x(s + a, be) && (c = y(s + a, t),
 	Ne(),
-	p[a] = K(p[a] + c, 0, kc[a]),
+	CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + c, 0, RANGER_MAX_LIFE[a]),
 	te(),
 	ne.add(this.a[a][0].x, this.a[a][0].y, 0, c, 65280)))),
 	-1 == b && (Yg(this, a),
@@ -3235,8 +3289,8 @@ da.fff = Pg.prototype.ma;
 Pg.prototype.ma = function(a) {
 	var b;
 	b = 1 - (a >> 2) << 2;
-	var c = qc[a] + $g(rc[a] - qc[a] + 1),
-		d = tc[a],
+	var c = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1),
+		d = RANGER_RANGE[a],
 		e = 0.5 * (this.a[a][9].x + this.a[a][10].x),
 		g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	b = 1 != ga ? G.m(e - d, g - d, e + d, g + d) : v.m(e - d, g - d, e + d, g + d, b);
@@ -3250,11 +3304,11 @@ Pg.prototype.ma = function(a) {
 	e < (1 != ga ? G.a[b][G.n].x : this.a[b][2].x) ? (Y(this.a[a][5], this.a[a][6], 0, 0.1, 0.1),
 	this.g[a] = 6) : (Y(this.a[a][5], this.a[a][6], 0, 0.1, 0.1),
 	this.g[a] = 5)),
-	-1 != this.g[a] && (this.p(a, this.a[a][6].x, this.a[a][6].y, b),
+	-1 != this.g[a] && (this.CURRENT_LIFE_VALUE(a, this.a[a][6].x, this.a[a][6].y, b),
 	this.g[a] = -1,
 	x(s + a, be) && (c = y(s + a, t),
 	Ne(),
-	p[a] = K(p[a] + c, 0, kc[a]),
+	CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + c, 0, RANGER_MAX_LIFE[a]),
 	te(),
 	ne.add(this.a[a][0].x, this.a[a][0].y, 0, c, 65280)))),
 	-1 == b && (Yg(this, a),
@@ -3276,8 +3330,8 @@ Pg.prototype.ma = function(a) {
 da.fff = Pg.prototype.na;
 Pg.prototype.na = function(a) {
 	var b, c, d = 1 - (a >> 2) << 2;
-	b = qc[a] + $g(rc[a] - qc[a] + 1);
-	c = tc[a];
+	b = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1);
+	c = RANGER_RANGE[a];
 	var e = 0.5 * (this.a[a][9].x + this.a[a][10].x),
 		g = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	c = 1 != ga ? G.m(e - c, g - c / 2, e + c, g + c / 2) : v.m(e - c, g - c / 2, e + c, g + c / 2, d);
@@ -3297,7 +3351,7 @@ Pg.prototype.na = function(a) {
 				d = y(s + a, t);
 				Ne();
 				for (b = a >> 2 << 2; b < (a >> 2 << 2) + 4; b++)
-					a != b && 0 != p[b] && (p[b] = K(p[b] + d, 0, kc[b]),
+					a != b && 0 != CURRENT_LIFE_VALUE[b] && (CURRENT_LIFE_VALUE[b] = K(CURRENT_LIFE_VALUE[b] + d, 0, RANGER_MAX_LIFE[b]),
 					ne.add(this.a[b][0].x, this.a[b][0].y, 0, d, 65280));
 				te()
 			}
@@ -3322,8 +3376,8 @@ da.fff = Pg.prototype.va;
 Pg.prototype.va = function(a) {
 	var b, c, d = new Qg;
 	c = 1 - (a >> 2) << 2;
-	b = qc[a] + $g(rc[a] - qc[a] + 1);
-	var e = tc[a],
+	b = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1);
+	var e = RANGER_RANGE[a],
 		g = 0.5 * (this.a[a][9].x + this.a[a][10].x),
 		k = 0.5 * (this.a[a][9].y + this.a[a][10].y);
 	c = 1 != ga ? G.m(g - e, k - e, g + e, k + e) : v.m(g - e, k - e, g + e, k + e, c);
@@ -3358,7 +3412,7 @@ Pg.prototype.va = function(a) {
 			}
 			0 == e && (this.p(a, this.a[a][6].x, this.a[a][6].y, c),
 			x(s + a, be) && (d = y(s + a, t),
-			p[a] = K(p[a] + d, 0, kc[a]),
+			CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + d, 0, RANGER_MAX_LIFE[a]),
 			ne.add(this.a[a][0].x, this.a[a][0].y, 0, d, 65280)));
 			te();
 			this.g[a] = -1
@@ -3382,7 +3436,7 @@ Pg.prototype.va = function(a) {
 ;
 da.fff = Pg.prototype.wa;
 Pg.prototype.wa = function(a) {
-	var b, c = new Qg, d = 1 - (a >> 2) << 2, e = oc[a], g = pc[a], k = qc[a] + $g(rc[a] - qc[a] + 1), r = tc[a];
+	var b, c = new Qg, d = 1 - (a >> 2) << 2, e = RANGER_MIN_AT[a], g = RANGER_MAX_AT[a], k = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1), r = RANGER_RANGE[a];
 	for (b = 11; 14 >= b; b++)
 		W(this.a[a][b], this.c[a][b], 0.05, 0.95);
 	if (0 != this.h[a] && this.v != a) {
@@ -3400,7 +3454,7 @@ Pg.prototype.wa = function(a) {
 		k = w(q[s + a], bd),
 		fc[a] = fc[a] + nc[a] < k ? fc[a] + nc[a] : k,
 		x(s + a, be) && (k = y(s + a, t),
-		p[a] = K(p[a] + k, 0, kc[a]),
+		CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + k, 0, RANGER_MAX_LIFE[a]),
 		ne.add(this.a[a][0].x, this.a[a][0].y, 0, k, 65280)),
 		te());
 		-1 == b && Yg(this, a);
@@ -3425,7 +3479,7 @@ Pg.prototype.wa = function(a) {
 		this.g[a] = -1;
 		x(s + a, vd) && (k = ig(1, floor(this.L * y(s + a, t) / 100)),
 		Ne(),
-		p[a] = K(p[a] + k, 0, kc[a]),
+		CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + k, 0, RANGER_MAX_LIFE[a]),
 		te(),
 		ne.add(this.a[a][0].x, this.a[a][0].y, 0, k, 65280));
 		x(s + a, wd) && 0 == ga && A(100) < y(s + a, t) && pe.add(this.a[a][0].x, this.a[a][0].y, 2, 0, 0);
@@ -3462,7 +3516,7 @@ Pg.prototype.wa = function(a) {
 ;
 da.fff = Pg.prototype.xa;
 Pg.prototype.xa = function(a) {
-	var b, c, d = new Qg, e = 1 - (a >> 2) << 2, g = oc[a], k = pc[a], r = qc[a] + $g(rc[a] - qc[a] + 1), m = tc[a], n;
+	var b, c, d = new Qg, e = 1 - (a >> 2) << 2, g = RANGER_MIN_AT[a], k = RANGER_MAX_AT[a], r = RANGER_MIN_AGI[a] + $g(RANGER_MAX_AGI[a] - RANGER_MIN_AGI[a] + 1), m = RANGER_RANGE[a], n;
 	n = 10 > mc[a] ? 1 : 30 > mc[a] ? 2 : 60 > mc[a] ? 3 : 100 > mc[a] ? 4 : 5;
 	x(s + a, ce) && (n += 1);
 	for (b = 11; 14 >= b; b++)
@@ -3529,7 +3583,7 @@ Pg.prototype.xa = function(a) {
 				fc[a] = 0,
 				this.p(a, this.a[a][this.g[a]].x, this.a[a][this.g[a]].y, r);
 			x(s + a, be) && (r = y(s + a, t),
-			p[a] = K(p[a] + r, 0, kc[a]),
+			CURRENT_LIFE_VALUE[a] = K(CURRENT_LIFE_VALUE[a] + r, 0, RANGER_MAX_LIFE[a]),
 			ne.add(this.a[a][0].x, this.a[a][0].y, 0, r, 65280));
 			te();
 			this.ba[a][b] = w(q[s + a], 7)
@@ -3675,8 +3729,8 @@ Pg.prototype.b = function() {
 		k = 4278190080 | 255 * Ac[a] / k << 16 | 255 * Bc[a] / k << 8 | 255 * Cc[a] / k,
 		J(cb, floor(floor(this.a[a][9].x + this.a[a][10].x) / 2), floor(floor(this.a[a][9].y + this.a[a][10].y) / 2), 20, 12, 12, 0, 20, 12, k),
 		Xf = dg = 0),
-		0 < (xc & 1) && 0 < p[a] && (V(floor(this.a[a][0].x) - 6, floor(this.a[a][0].y) - 6, 13, 2, 10027008),
-		V(floor(this.a[a][0].x) - 6, floor(this.a[a][0].y) - 6, floor(13 * p[a] / kc[a]), 2, 52224)),
+		0 < (xc & 1) && 0 < CURRENT_LIFE_VALUE[a] && (V(floor(this.a[a][0].x) - 6, floor(this.a[a][0].y) - 6, 13, 2, 10027008),
+		V(floor(this.a[a][0].x) - 6, floor(this.a[a][0].y) - 6, floor(13 * CURRENT_LIFE_VALUE[a] / RANGER_MAX_LIFE[a]), 2, 52224)),
 		a == tb && 0 == ga && (0 == yc ? V(floor(this.a[a][0].x) - 1, floor(this.a[a][0].y) - 8, 3, 3, 16776960) : 1 == yc && (L(floor(this.a[a][0].x) - 3, floor(this.a[a][0].y) - 14, floor(this.a[a][0].x) + 3, floor(this.a[a][0].y) - 14, 16776960),
 		L(floor(this.a[a][0].x) - 3, floor(this.a[a][0].y) - 14, floor(this.a[a][0].x) + 0.5, floor(this.a[a][0].y) - 7, 16776960),
 		L(floor(this.a[a][0].x) + 3.5, floor(this.a[a][0].y) - 14, floor(this.a[a][0].x) + 0.5, floor(this.a[a][0].y) - 7, 16776960))))
@@ -4020,8 +4074,8 @@ function Jg(a, b, c) {
 			for (Lb = 480,
 			b = 0; 4 > b; b++)
 				v.p(562, v.a[b][0].x, v.a[b][0].y, 0),
-				p[b] != kc[b] && ne.add(v.a[b][0].x, v.a[b][0].y, 0, kc[b] - p[b], 65280),
-				p[b] = kc[b]
+				CURRENT_LIFE_VALUE[b] != RANGER_MAX_LIFE[b] && ne.add(v.a[b][0].x, v.a[b][0].y, 0, RANGER_MAX_LIFE[b] - CURRENT_LIFE_VALUE[b], 65280),
+				CURRENT_LIFE_VALUE[b] = RANGER_MAX_LIFE[b]
 	}
 	te();
 	c = B[a.id[b]][mg];
@@ -5585,7 +5639,7 @@ var ze = 90,
 	kg = 4,
 	jg = [1, 2, 3, 4, 5, 6, 7, 8, 11, 12, 13, 9, 10, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 71, 72, 73, 74, 75, 76, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 0, 0, 0, 0, 0],
 	gg = [1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 9, 5, 6, 7, 1, 8, 8, 9, 9, 9, 1, 10, 11, 11, 12, 12, 13, 13, 14, 14, 12, 13, 14, 1, 15, 15, 15, 16, 16, 1, 17, 17, 18, 17, 18, 18, 18, 1, 19, 19, 19, 20, 20, 20, 21, 23, 20, 21, 21, 22, 22, 23, 22, 23, 24, 24, 24, 24, 24, 25, 1, 1, 24, 25, 26, 26, 26, 1, 27, 27, 28, 28, 1, 29, 30, 31, 32, 33, 1, 1],
-	Uf = "Town;Opening Street;Grassland 1;Grassland 2;Grassland 3;Grassland 4;Grassland 5;Grassland 6;Grassland 7;Castle Gate;Castle;Hill Country 1;Hill Country 2;Hill Country 3;Lake;Forest 1;Forest 2;Cavern 1;Cavern 2;Cavern 3;Village;Seaside 1;Seaside 2;Seaside 3;Seaside 4;Submarine 1;Submarine 2;Submarine 3;Submarine 4;Submarine Shrine;Mist Grove 1;Mist Grove 2;Mist Grove 3;???;Desert 1;Desert 2;Desert 3;Desert 4;Desert 5;Oasis;Desert 6;Desert 7;Pyramid;Desert 8;Beach 1;Beach 2;Beach 3;Resort;Cavern 4;Cavern 5;Cavern 6;Snowfield 1;Snowfield 2;Mountain 1;Mountain 2;Mountaintop;Snowfield 3;Snowfield 4;Snowfield 5;Snowfield 6;Snowfield 7;Snowfield 8;Frozen Lake;Ice Castle;Snowfield 9;Beach 4;Forest 3;Forest 4;Forest 5;Forest 6;Forget Tree;!!!;Hell 1;Hell 2;Hell 3;Hell 4;Hell 5;Island;Hell 6;Inferno 1;Inferno 2;Inferno 3;Blood Lake;Cavern 7;Cavern 8;Hell 7;Hell 8;Hell Gate;Hell Castle;Volcano".split(";"),
+	MAP_NAMES = "Town;Opening Street;Grassland 1;Grassland 2;Grassland 3;Grassland 4;Grassland 5;Grassland 6;Grassland 7;Castle Gate;Castle;Hill Country 1;Hill Country 2;Hill Country 3;Lake;Forest 1;Forest 2;Cavern 1;Cavern 2;Cavern 3;Village;Seaside 1;Seaside 2;Seaside 3;Seaside 4;Submarine 1;Submarine 2;Submarine 3;Submarine 4;Submarine Shrine;Mist Grove 1;Mist Grove 2;Mist Grove 3;???;Desert 1;Desert 2;Desert 3;Desert 4;Desert 5;Oasis;Desert 6;Desert 7;Pyramid;Desert 8;Beach 1;Beach 2;Beach 3;Resort;Cavern 4;Cavern 5;Cavern 6;Snowfield 1;Snowfield 2;Mountain 1;Mountain 2;Mountaintop;Snowfield 3;Snowfield 4;Snowfield 5;Snowfield 6;Snowfield 7;Snowfield 8;Frozen Lake;Ice Castle;Snowfield 9;Beach 4;Forest 3;Forest 4;Forest 5;Forest 6;Forget Tree;!!!;Hell 1;Hell 2;Hell 3;Hell 4;Hell 5;Island;Hell 6;Inferno 1;Inferno 2;Inferno 3;Blood Lake;Cavern 7;Cavern 8;Hell 7;Hell 8;Hell Gate;Hell Castle;Volcano".split(";"),
 	De = [[6, 28, 0, 1, 0], [10, 28, 0, 2, 0], [11, 24, 0, 3, 11], [10, 20, 0, 4, 5], [8, 16, 0, 6, 0], [12, 17, 0, 6, 14], [11, 12, 0, 7, 0], [15, 13, 0, 8, 0], [20, 13, 0, 9, 15], [24, 16, 0, 10, 0], [28, 16, 1, 21, 0], [15, 23, 0, 12, 0], [18, 20, 0, 13, 0], [22, 19, 0, 9, 0], [15, 17, 0, 0, 0], [20, 10, 0, 16, 0], [22, 7, 0, 17, 0], [22, 4, 1, 18, 0], [14, 3, 0, 19, 0], [6, 4, 1, 20, 0], [4, 7, 0, 0, 0], [33, 16, 0, 22, 30], [34, 12, 0, 23, 0], [37, 9, 0, 24, 0], [41, 10, 0, 25, 0], [42, 13, 0, 26, 28], [39, 16, 0, 27, 0], [43, 19, 0, 29, 0], [45, 14, 0, 29, 0], [48, 17, 2, 34, 0], [35, 20, 0, 31, 0], [38, 21, 0, 32, 0], [42, 24, 0, 33, 0], [46, 24, 0, 0, 0], [53, 17, 0, 35, 36], [57, 16, 0, 37, 0], [57, 20, 0, 38, 0], [60, 14, 0, 39, 0], [61, 19, 0, 39, 0], [63, 16, 1, 40, 41], [66, 14, 0, 42, 0], [66, 18, 0, 42, 43], [69, 16, 1, 48, 0], [70, 20, 0, 44, 0], [72, 24, 0, 45, 0], [76, 26, 0, 46, 0], [72, 30, 0, 47, 0], [65, 28, 0, 0, 0], [74, 14, 1, 49, 0], [78, 8, 0, 50, 0], [84, 10, 1, 51, 0], [87, 12, 0, 52, 56], [86, 16, 0, 53, 0], [81, 18, 0, 54, 0], [78, 14, 0, 55, 0], [79, 11, 0, 0, 0], [91, 11, 0, 57, 0], [93, 14, 0, 58, 59], [96, 16, 0, 62, 63], [94, 19, 0, 60, 0], [97, 21, 0, 61, 63], [96, 25, 0, 0, 0], [97, 13, 0, 0, 0], [101, 18, 1, 64, 65], [105, 16, 0, 72, 0], [106, 23, 0, 66, 0], [102, 28, 0, 67, 0], [110, 30, 0, 68, 0], [114, 29, 0, 69, 0], [115, 26, 0, 70, 0], [113, 22, 1, 71, 0], [109, 19, 0, 0, 0], [113, 16, 0, 73, 0], [117, 15, 0, 74, 0], [121, 18, 0, 75, 0], [126, 21, 0, 76, 79], [130, 18, 0, 77, 78], [126, 14, 0, 0, 0], [135, 17, 0, 83, 0], [125, 25, 0, 80, 0], [130, 27, 0, 81, 0], [135, 25, 0, 82, 0], [137, 21, 0, 0, 0], [136, 14, 1, 84, 0], [145, 12, 1, 85, 0], [143, 17, 0, 86, 0], [139, 15, 0, 87, 0], [140, 10, 0, 88, 0], [140, 7, 1, -1, 89], [130, 23, 1, 0, 0]],
 	O = 1,
 	P = 2,
@@ -6138,13 +6192,13 @@ aa.move = function() {
 				ne.add(this.a[a].x, this.a[a].y, 0, this.value[a], 16776960);
 			else if (2 == this.item[a]) {
 				for (c = 0; 4 > c; c++)
-					0 != v.search[c] && floor(100 * p[b] / kc[b]) > floor(100 * p[c] / kc[c]) && (b = c);
-				if (p[b] == kc[b])
+					0 != v.search[c] && floor(100 * CURRENT_LIFE_VALUE[b] / RANGER_MAX_LIFE[b]) > floor(100 * CURRENT_LIFE_VALUE[c] / RANGER_MAX_LIFE[c]) && (b = c);
+				if (CURRENT_LIFE_VALUE[b] == RANGER_MAX_LIFE[b])
 					continue;
 				Ne();
-				p[b] = K(p[b] + floor(kc[b] / 5), 0, kc[b]);
+				CURRENT_LIFE_VALUE[b] = K(CURRENT_LIFE_VALUE[b] + floor(RANGER_MAX_LIFE[b] / 5), 0, RANGER_MAX_LIFE[b]);
 				te();
-				ne.add(this.a[a].x, this.a[a].y, 0, floor(kc[b] / 5), 65280)
+				ne.add(this.a[a].x, this.a[a].y, 0, floor(RANGER_MAX_LIFE[b] / 5), 65280)
 			} else {
 				for (b = Fc; b < Gc; b++)
 					if (0 == q[b]) {
@@ -6193,7 +6247,7 @@ function th() {
 th.prototype.j = function(a) {
 	var b, c;
 	this.w = a;
-	this.cb != Me[this.w][nb][1] && (this.cb = Me[this.w][nb][1],
+	this.cb != Me[this.w][CURRENT_ROOM_INDEX][1] && (this.cb = Me[this.w][CURRENT_ROOM_INDEX][1],
 	Na = new wa,
 	Na.j("st" + this.cb + ".gif"));
 	mf(Na);
@@ -6242,7 +6296,7 @@ th.prototype.j = function(a) {
 	for (b = 12; 60 > b; b++)
 		for (c = 1; c < this.s - 1; c++)
 			9 == this.e[c - 1][b] && 9 == this.e[c][b] && (this.gb[this.ab++] = c * this.i + b);
-	if (0 == nb) {
+	if (0 == CURRENT_ROOM_INDEX) {
 		for (a = 0; a < ea * fa; a++)
 			Ma.f[a] = 0;
 		b = C;
@@ -6274,7 +6328,7 @@ th.prototype.j = function(a) {
 }
 ;
 th.prototype.b = function() {
-	var a, b, c = new Int32Array([0, 8, 16, 0, 8, 16, 0, 8, 16]), d = new Int32Array([0, 0, 0, 8, 8, 8, 16, 16, 16]), e = Pa[Me[this.w][nb][0]];
+	var a, b, c = new Int32Array([0, 8, 16, 0, 8, 16, 0, 8, 16]), d = new Int32Array([0, 0, 0, 8, 8, 8, 16, 16, 16]), e = Pa[Me[this.w][CURRENT_ROOM_INDEX][0]];
 	for (b = 0; b < this.s; b++)
 		for (a = 0; a < this.i; a++) {
 			var g = this.e[b][a];
@@ -6373,13 +6427,13 @@ uh.prototype.b = function() {
 		d = 8 * De[a][1],
 		c = 71 == a ? 3 : 24,
 		Df(this.t + b, d, c, c)) && (!Ef || 0 != a && 20 != a && 47 != a && 70 != a && 77 != a ? Ef && 0 != a && (h = a,
-		nb = 0,
+		CURRENT_ROOM_INDEX = 0,
 		f = 10) : (h = a,
-		nb = 1,
+		CURRENT_ROOM_INDEX = 1,
 		f = 50),
-		b = K(cg, 1 + 4 * Uf[a].length, 510 - 4 * Uf[a].length),
+		b = K(cg, 1 + 4 * MAP_NAMES[a].length, 510 - 4 * MAP_NAMES[a].length),
 		d = K(fg - 24, 8, 256),
-		yf(D, b, d, Uf[a], 16777215, 5263440));
+		yf(D, b, d, MAP_NAMES[a], 16777215, 5263440));
 	a = D;
 	a.Q = 4;
 	yf(a, 256, 16, "WORLD MAP", -1, 13158600);
@@ -7912,5 +7966,5 @@ GameLoad("1HFBZuEbzMmBd4Z2Z4c9jIuV7mQE8rZI7wldSH7meXD84pnmYZbeint.6FPamzBQgxDWq9
 */
 
 function loadData () {
-	GameLoad("1HFBZuEbzMmBd4Z2Z4c9jIuV7mQE8rZI7wldSH7meXD84pnmYZbeint.6FPamzBQgxDWq9VsEd1SuLpIoJvS0bBoV8oT9sUDzkWJA*riaVMHDA87FGILPUahpy6HTgu7NewDXsCZxKk9b2W*V0Y5fEqR3iM1jQ8tdOAzncSJB4.vromllmorv.4BJScnzAOdt8Qj1Mi3RqEf5Y0V*W2b9kKxZCsXDweN7ugTH6yphaUPLIGFFGILPUahpy6HTgu8Ph.HbwGe0PpHkBOt6dmMHu", 1, '')	
+	GameLoad("1wPwusrrsux*4AHPblw6JXm0HZta7TqFf5Z4Y0W8fCsQ0iJypT9rbJ2oZLA.qgYQJDA6421135AELRYgpzGSft6Mi.HbwGXvIi7Z3X0W1Z6gFrS4jN2kR9uePB.odTKC5*EA754457AEJPWenx6IVjyCTl2Mh1Om9Z.QtLqKrNwU3fGuXBsYFziSD*ocRH80vpkgdbaabdgkpv08HRco*DSizFYsBXuGf3UwNrKqLtQ.Z9mO1hM2lTCyjVI6xneXRMIEBCCDEGJQWcSaScOmCY", 1, '')
 }
